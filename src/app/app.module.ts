@@ -25,6 +25,10 @@ import { AppService } from './app.service';
 import { AppInterceptor } from './theme/utils/app-interceptor';
 import { OptionsComponent } from './theme/components/options/options.component';
 import { FooterComponent } from './theme/components/footer/footer.component';
+import { BackOfficeComponent } from './back-office/back-office.component';
+import { AdminComponent } from './back-office/admin/admin.component';
+import { AdminModule } from './back-office/admin/admin.module';
+
 
 
 @NgModule({
@@ -37,18 +41,23 @@ import { FooterComponent } from './theme/components/footer/footer.component';
       apiKey: 'AIzaSyDLf9Ywk47zipEtorDewwMmB3JtuXdzYL4'
     }),
     SharedModule,
+
     routing
   ],
   declarations: [
     AppComponent,
     PagesComponent,
+    BackOfficeComponent,
     NotFoundComponent,
     TopMenuComponent,
     MenuComponent,
     SidenavMenuComponent,
     BreadcrumbComponent,
     OptionsComponent,
-    FooterComponent    
+    FooterComponent,
+    AdminModule,
+
+  
   ], 
   providers: [
     AppSettings,
