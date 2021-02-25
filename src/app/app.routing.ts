@@ -3,6 +3,8 @@ import { ModuleWithProviders } from '@angular/core';
 
 import { PagesComponent } from './pages/pages.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { BackOfficeComponent } from './back-office/back-office.component';
+
 
 export const routes: Routes = [
     { 
@@ -17,7 +19,15 @@ export const routes: Routes = [
             { path: 'contact', loadChildren: () => import('./pages/contact/contact.module').then(m => m.ContactModule), data: { breadcrumb: 'Contact' } },
             { path: 'sign-in', loadChildren: () => import('./pages/sign-in/sign-in.module').then(m => m.SignInModule), data: { breadcrumb: 'Sign In ' } },
             { path: 'brands', loadChildren: () => import('./pages/brands/brands.module').then(m => m.BrandsModule), data: { breadcrumb: 'Brands' } },
-            { path: 'products', loadChildren: () => import('./pages/products/products.module').then(m => m.ProductsModule), data: { breadcrumb: 'All Products' } }
+            { path: 'products', loadChildren: () => import('./pages/products/products.module').then(m => m.ProductsModule), data: { breadcrumb: 'All Products' } },
+
+        ]
+    },
+    { 
+        path: 'backoffice', 
+        component: BackOfficeComponent, children: [
+         { path: 'admins', loadChildren: () => import('./back-office/admin/admin.module').then(m => m.AdminModule),data: { breadcrumb: 'admins' } }
+ 
         ]
     },
     { path: '**', component: NotFoundComponent }
