@@ -24,42 +24,42 @@ export class ProductsComponent implements OnInit {
   public products: Array<Product> = [];
   public categories:Category[];
   public brands = [];
-  public priceFrom: number = 750;
-  public priceTo: number = 1599;
-  public colors = [
-    { name: "#5C6BC0", selected: false },
-    { name: "#66BB6A", selected: false },
-    { name: "#EF5350", selected: false },
-    { name: "#BA68C8", selected: false },
-    { name: "#FF4081", selected: false },
-    { name: "#9575CD", selected: false },
-    { name: "#90CAF9", selected: false },
-    { name: "#B2DFDB", selected: false },
-    { name: "#DCE775", selected: false },
-    { name: "#FFD740", selected: false },
-    { name: "#00E676", selected: false },
-    { name: "#FBC02D", selected: false },
-    { name: "#FF7043", selected: false },
-    { name: "#F5F5F5", selected: false },
-    { name: "#696969", selected: false }
-  ];
-  public sizes = [
-    { name: "S", selected: false },
-    { name: "M", selected: false },
-    { name: "L", selected: false },
-    { name: "XL", selected: false },
-    { name: "2XL", selected: false },
-    { name: "32", selected: false },
-    { name: "36", selected: false },
-    { name: "38", selected: false },
-    { name: "46", selected: false },
-    { name: "52", selected: false },
-    { name: "13.3\"", selected: false },
-    { name: "15.4\"", selected: false },
-    { name: "17\"", selected: false },
-    { name: "21\"", selected: false },
-    { name: "23.4\"", selected: false }
-  ]; 
+  public priceFrom: number = 30;
+  public priceTo: number = 200;
+  // public colors = [
+  //   { name: "#5C6BC0", selected: false },
+  //   { name: "#66BB6A", selected: false },
+  //   { name: "#EF5350", selected: false },
+  //   { name: "#BA68C8", selected: false },
+  //   { name: "#FF4081", selected: false },
+  //   { name: "#9575CD", selected: false },
+  //   { name: "#90CAF9", selected: false },
+  //   { name: "#B2DFDB", selected: false },
+  //   { name: "#DCE775", selected: false },
+  //   { name: "#FFD740", selected: false },
+  //   { name: "#00E676", selected: false },
+  //   { name: "#FBC02D", selected: false },
+  //   { name: "#FF7043", selected: false },
+  //   { name: "#F5F5F5", selected: false },
+  //   { name: "#696969", selected: false }
+  // ];
+  // public sizes = [
+  //   { name: "S", selected: false },
+  //   { name: "M", selected: false },
+  //   { name: "L", selected: false },
+  //   { name: "XL", selected: false },
+  //   { name: "2XL", selected: false },
+  //   { name: "32", selected: false },
+  //   { name: "36", selected: false },
+  //   { name: "38", selected: false },
+  //   { name: "46", selected: false },
+  //   { name: "52", selected: false },
+  //   { name: "13.3\"", selected: false },
+  //   { name: "15.4\"", selected: false },
+  //   { name: "17\"", selected: false },
+  //   { name: "21\"", selected: false },
+  //   { name: "23.4\"", selected: false }
+  // ]; 
   public page:any;
   public settings: Settings;
   constructor(public appSettings:AppSettings, 

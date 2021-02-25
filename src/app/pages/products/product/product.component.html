@@ -48,7 +48,7 @@
             <h2 class="new-price">${{product?.newPrice}}</h2>
         </div>        
 
-        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="details text-muted py-1">
+        <!-- <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="details text-muted py-1">
             <div *ngIf="product?.color" class="color">
                 <span class="fw-500">Select Color:</span>
                 <button mat-raised-button *ngFor="let color of product?.color" [style.background]="color">&nbsp;</button>              
@@ -57,7 +57,7 @@
                 <span class="fw-500">Select Size:</span>
                 <button mat-raised-button *ngFor="let size of product?.size">{{size}}</button>
             </div>
-        </div>
+        </div> -->
 
         <div class="py-1">
             <app-controls [product]="product" [type]="'all'"></app-controls> 
@@ -79,7 +79,7 @@
                     <mat-icon class="mat-icon-xlg text-muted m-0">card_giftcard</mat-icon>
                     <div class="content">
                         <p>BONUS PLUS</p> 
-                        <span class="text-muted m-0">Make fun of shopping and collect bonuses</span>
+                        <span class="text-muted m-0">Make fun of reading and collect bonuses</span>
                     </div> 
                 </mat-card> 
             </div>
