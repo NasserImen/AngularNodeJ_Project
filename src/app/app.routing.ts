@@ -26,10 +26,11 @@ export const routes: Routes = [
     { 
         path: 'backoffice', 
         component: BackOfficeComponent, children: [
-         { path: 'admins', loadChildren: () => import('./back-office/admin/admin.module').then(m => m.AdminModule),data: { breadcrumb: 'admins' } }
+         { path: 'dashboard', loadChildren: () => import('./back-office/admin/admin.module').then(m => m.AdminModule),data: { breadcrumb: 'admins' } }
  
         ]
     },
+
     { path: '**', component: NotFoundComponent }
 ];
 

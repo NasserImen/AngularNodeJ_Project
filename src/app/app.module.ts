@@ -26,8 +26,9 @@ import { AppInterceptor } from './theme/utils/app-interceptor';
 import { OptionsComponent } from './theme/components/options/options.component';
 import { FooterComponent } from './theme/components/footer/footer.component';
 import { BackOfficeComponent } from './back-office/back-office.component';
-import { AdminComponent } from './back-office/admin/admin.component';
+// import { AdminComponent } from './back-office/admin/admin.component';
 import { AdminModule } from './back-office/admin/admin.module';
+
 
 
 
@@ -41,8 +42,8 @@ import { AdminModule } from './back-office/admin/admin.module';
       apiKey: 'AIzaSyDLf9Ywk47zipEtorDewwMmB3JtuXdzYL4'
     }),
     SharedModule,
-
-    routing
+    AdminModule,
+    routing,
   ],
   declarations: [
     AppComponent,
@@ -55,6 +56,11 @@ import { AdminModule } from './back-office/admin/admin.module';
     BreadcrumbComponent,
     OptionsComponent,
     FooterComponent,
+ 
+
+    // AdminComponent,
+    // AdminModule
+
   
   ], 
   providers: [
