@@ -55,8 +55,6 @@ import { AdminModule } from './back-office/admin/admin.module';
     BreadcrumbComponent,
     OptionsComponent,
     FooterComponent,
-    AdminModule,
-
   
   ], 
   providers: [
