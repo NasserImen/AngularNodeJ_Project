@@ -4,7 +4,6 @@ import { ModuleWithProviders } from '@angular/core';
 import { PagesComponent } from './pages/pages.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { BackOfficeComponent } from './back-office/back-office.component';
-import {BackOffice1Module} from './back-office1/back-office1.module'
 
 
 export const routes: Routes = [
@@ -27,7 +26,7 @@ export const routes: Routes = [
     { 
         path: 'backoffice', 
         component: BackOfficeComponent, children: [
-         { path: 'admins', loadChildren: () => import('./back-office/admin/admin.module').then(m => m.AdminModule),data: { breadcrumb: 'admins' } }
+         { path: 'dashboard', loadChildren: () => import('./back-office/admin/admin.module').then(m => m.AdminModule),data: { breadcrumb: 'admins' } }
  
         ]
     },
