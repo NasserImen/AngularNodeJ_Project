@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { emailValidator, matchingPasswords } from '../../theme/utils/app-validators';
+import { AuthService } from 'src/app/services/auth.service';
+import {HttpClient} from '@angular/common/http'
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-sign-in',
@@ -12,34 +15,56 @@ import { emailValidator, matchingPasswords } from '../../theme/utils/app-validat
 export class SignInComponent implements OnInit {
   loginForm: FormGroup;
   registerForm: FormGroup;
-
-  constructor(public formBuilder: FormBuilder, public router:Router, public snackBar: MatSnackBar) { }
+  user: User;
+  constructor(public formBuilder: FormBuilder, public router:Router, public snackBar: MatSnackBar, private us:AuthService) { }
 
   ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      'email': ['', Validators.compose([Validators.required, emailValidator])],
-      'password': ['', Validators.compose([Validators.required, Validators.minLength(6)])] 
+    this.loginForm = new FormGroup({
+      email:new FormControl ('', Validators.compose([Validators.required, emailValidator  ])),
+      password: new FormControl('', Validators.compose([Validators.required, Validators.minLength(6) ])) 
     });
 
-    this.registerForm = this.formBuilder.group({
-      'name': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
-      'email': ['', Validators.compose([Validators.required, emailValidator])],
-      'password': ['', Validators.required],
-      'confirmPassword': ['', Validators.required]
-    },{validator: matchingPasswords('password', 'confirmPassword')});
+    this.registerForm = new FormGroup ({
+      name: new FormControl ('', Validators.compose([Validators.required, Validators.minLength(3)])),
+      email: new FormControl ('', Validators.compose([Validators.required, emailValidator ])),
+      password: new FormControl ('', Validators.required),
+      confirmPassword: new FormControl ('', Validators.required)
+    })
 
   }
 
-  public onLoginFormSubmit(values:Object):void {
-    if (this.loginForm.valid) {
-      this.router.navigate(['/']);
+  public onLoginFormSubmit(user):void {
+   this.us.login(user).subscribe(res=>{
+      this.user = res.user;
+      if (!this.user) {
+        this.snackBar.open('user not found','×',{panelClass: 'success', verticalPosition: 'top', duration: 3000})
+      }
+      else{
+       localStorage.setItem("userConnected", JSON.stringify(this.user))
+       this.router.navigate(['/']);
+     }
+   },
+  err=>{},
+  ()=>{},
+  )};
+
+  public onRegisterFormSubmit(user):void {    
+ 
+    this.us.postusers(user).subscribe(res =>{
+      console.log(res);
+      if(this.registerForm.value.password==this.registerForm.value.confirmPassword){
+      if (res=='user already exist'){
+        this.snackBar.open('user already exist','×',{panelClass: 'success', verticalPosition: 'top', duration: 3000})
+      }
+      else{
+        this.snackBar.open('You registered successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+      this.registerForm.reset()
     }
   }
-
-  public onRegisterFormSubmit(values:Object):void {
-    if (this.registerForm.valid) {
-      this.snackBar.open('You registered successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
-    }
+  else{
+    this.snackBar.open('confirm your password','×',{panelClass: 'success', verticalPosition: 'top', duration: 3000}) 
   }
-
+    } , err=>{},()=>{})
+    console.log(user);  
+  }
 }

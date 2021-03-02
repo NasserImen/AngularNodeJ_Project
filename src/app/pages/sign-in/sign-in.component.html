@@ -16,7 +16,7 @@
                     <mat-error *ngIf="loginForm.controls.password.hasError('minlength')">Password isn't long enough, minimum of 6 characters</mat-error>
                 </mat-form-field> 
                 <div class="text-center mt-2">
-                    <button mat-fab color="primary" class="mat-elevation-z6" (click)="onLoginFormSubmit(loginForm.value)">
+                    <button mat-fab color="primary" class="mat-elevation-z6" [disabled] = "!loginForm.value.email || !loginForm.value.password" (click)="onLoginFormSubmit(loginForm.value)">
                         <mat-icon>exit_to_app</mat-icon>
                     </button>
                 </div> 
@@ -43,7 +43,7 @@
         </div>
         <div fxFlex="100" fxFlex.gt-sm="50" class="p-2" ngClass.sm="mt-2" ngClass.xs="mt-2">
             <h2 class="text-muted text-center">Don't have an account? Sign up now!</h2>
-            <form [formGroup]="registerForm" (ngSubmit)="onRegisterFormSubmit(registerForm.value)">
+            <form [formGroup]="registerForm" >
                 <mat-form-field  appearance="outline" class="w-100 mt-2">
                     <mat-label>Full Name</mat-label>
                     <input matInput placeholder="Full Name" formControlName="name" required>
