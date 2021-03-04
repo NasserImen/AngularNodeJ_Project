@@ -9,6 +9,7 @@ import { PagesComponent } from 'src/app/pages/pages.component';
 import { BackOfficeComponent } from '../back-office.component';
 import {AddbookComponent} from '../admin/addbook/addbook.component'
 import { DashboarComponent } from './dashboar/dashboar.component';
+import { ListbooksVComponent } from './listbooks-v/listbooks-v.component';
 export const routes = [
   {  
     path: '', 
@@ -16,6 +17,7 @@ export const routes = [
      component: AdminComponent, children: [
          { path: 'dashboard', component: DashboarComponent },
          { path: 'addbook', component: AddbookComponent },
+         { path: 'listbooksV',component:ListbooksVComponent }
        
     ]
  }
@@ -25,7 +27,8 @@ export const routes = [
   declarations: [
     AdminComponent,
     AddbookComponent,
-    DashboarComponent
+    DashboarComponent,
+    ListbooksVComponent
   ],
  
   imports: [

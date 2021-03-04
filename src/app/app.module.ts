@@ -32,6 +32,7 @@ import { AdminModule } from './back-office/admin/admin.module';
 
 
 
+
 @NgModule({
    imports: [
     BrowserModule,
@@ -56,6 +57,7 @@ import { AdminModule } from './back-office/admin/admin.module';
     BreadcrumbComponent,
     OptionsComponent,
     FooterComponent,
+ 
  
 
     // AdminComponent,

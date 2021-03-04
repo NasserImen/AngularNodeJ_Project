@@ -36,11 +36,13 @@ export class SignInComponent implements OnInit {
   public onLoginFormSubmit(user):void {
    this.us.login(user).subscribe(res=>{
       this.user = res.user;
+      console.log(res);
+      
       if (!this.user) {
         this.snackBar.open('user not found','×',{panelClass: 'success', verticalPosition: 'top', duration: 3000})
       }
       else{
-       localStorage.setItem("userConnected", JSON.stringify(this.user))
+       localStorage.setItem("token", JSON.stringify(res.token))
        this.router.navigate(['/']);
      }
    },
