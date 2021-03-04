@@ -7,6 +7,8 @@ import { ProductDialogComponent } from './product-dialog/product-dialog.componen
 import { Data, AppService } from '../../app.service';
 import { Product } from "../../app.models";
 import { Settings, AppSettings } from 'src/app/app.settings';
+import {BooksService} from './books.service'
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-products-carousel',
@@ -15,10 +17,14 @@ import { Settings, AppSettings } from 'src/app/app.settings';
 })
 export class ProductsCarouselComponent implements OnInit {
 
+
+  url:'localhost:3000/Livres'
+  result : any
+
   @Input('products') products: Array<Product> = [];
   public config: SwiperConfigInterface = {};
   public settings: Settings;
-  constructor(public appSettings:AppSettings, public appService:AppService, public dialog: MatDialog, private router: Router) { 
+  constructor(public appSettings:AppSettings, public appService:AppService, public dialog: MatDialog, private router: Router , private http:BooksService) { 
     this.settings = this.appSettings.settings;
   }
 
@@ -56,6 +62,8 @@ export class ProductsCarouselComponent implements OnInit {
     }
   }
 
+
+
   public openProductDialog(product){   
     let dialogRef = this.dialog.open(ProductDialogComponent, {
         data: product,
@@ -67,6 +75,11 @@ export class ProductsCarouselComponent implements OnInit {
         this.router.navigate(['/products', product.id, product.name]); 
       }
     });
+  }
+
+  getBooks(){
+    // this.result=this.http.getbooks(this.url + '/Livres')
+    return(this.result)
   }
 
 }

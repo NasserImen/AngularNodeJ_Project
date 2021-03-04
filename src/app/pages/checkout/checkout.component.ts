@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material';
 import { Data, AppService } from '../../app.service';
 
@@ -30,18 +30,18 @@ export class CheckoutComponent implements OnInit {
     this.months = this.appService.getMonths();
     this.years = this.appService.getYears();
     this.deliveryMethods = this.appService.getDeliveryMethods();
-    this.billingForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      middleName: '',
-      company: '',
-      email: ['', Validators.required],
-      phone: ['', Validators.required],
-      country: ['', Validators.required],
-      city: ['', Validators.required],
-      state: '',
-      zip: ['', Validators.required],
-      address: ['', Validators.required]
+    this.billingForm = new FormGroup({
+      firstName:new FormControl ('', Validators.required),
+      lastName: new FormControl ('', Validators.required),
+      middleName: new FormControl (''),
+      company: new FormControl (''),
+      email: new FormControl('', Validators.required),
+      phone: new FormControl ('', Validators.required),
+      country: new FormControl ('', Validators.required),
+      city:  new FormControl ('', Validators.required),
+      state: new FormControl (''),
+      zip: new FormControl ('', Validators.required),
+      address: new FormControl ('', Validators.required)
     });
     this.deliveryForm = this.formBuilder.group({
       deliveryMethod: [this.deliveryMethods[0], Validators.required]
