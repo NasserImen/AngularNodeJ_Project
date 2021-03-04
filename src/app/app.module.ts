@@ -28,6 +28,7 @@ import { FooterComponent } from './theme/components/footer/footer.component';
 import { BackOfficeComponent } from './back-office/back-office.component';
 // import { AdminComponent } from './back-office/admin/admin.component';
 import { AdminModule } from './back-office/admin/admin.module';
+import { InterceptorsService } from './providers/interceptors.service';
 
 
 
@@ -70,7 +71,8 @@ import { AdminModule } from './back-office/admin/admin.module';
     AppService,   
     { provide: OverlayContainer, useClass: CustomOverlayContainer },
     { provide: MAT_MENU_SCROLL_STRATEGY, useFactory: menuScrollStrategy, deps: [Overlay] },
-    { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorsService, multi: true }
   ],
   bootstrap: [AppComponent]
 })

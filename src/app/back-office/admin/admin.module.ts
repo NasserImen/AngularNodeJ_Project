@@ -12,7 +12,7 @@ import { DashboarComponent } from './dashboar/dashboar.component';
 import { ListbooksVComponent } from './listbooks-v/listbooks-v.component';
 export const routes = [
   {  
-    path: '', 
+    path: 'admin', 
     
      component: AdminComponent, children: [
          { path: 'dashboard', component: DashboarComponent },
