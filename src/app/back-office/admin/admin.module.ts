@@ -11,7 +11,7 @@ import {AddbookComponent} from '../admin/addbook/addbook.component'
 import { DashboarComponent } from './dashboar/dashboar.component';
 export const routes = [
   {  
-    path: '', 
+    path: 'admin', 
     
      component: AdminComponent, children: [
          { path: 'dashboard', component: DashboarComponent },
