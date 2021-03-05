@@ -33,6 +33,7 @@ import { InterceptorsService } from './providers/interceptors.service';
 
 
 
+
 @NgModule({
    imports: [
     BrowserModule,
@@ -57,6 +58,7 @@ import { InterceptorsService } from './providers/interceptors.service';
     BreadcrumbComponent,
     OptionsComponent,
     FooterComponent,
+ 
  
 
     // AdminComponent,
