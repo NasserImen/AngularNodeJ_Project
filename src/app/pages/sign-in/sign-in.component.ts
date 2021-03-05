@@ -42,7 +42,7 @@ export class SignInComponent implements OnInit {
         this.snackBar.open('user not found','×',{panelClass: 'success', verticalPosition: 'top', duration: 3000})
       }
       else{
-       localStorage.setItem("token", JSON.stringify(res.token))
+       localStorage.setItem("token", res.token)
        this.router.navigate(['/']);
      }
    },

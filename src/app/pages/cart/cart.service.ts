@@ -9,7 +9,7 @@ export class CartService {
 url : 'localhost:3000'
   constructor(private http : HttpClient) { }
 
-  getbook(titre):Observable<any>{
-    const getbook = this.http.get<any>(this.url + '/cart/getbook' , titre)
-  }
+  // getbook(titre):Observable<any>{
+  //   const getbook = this.http.get<any>(this.url + '/cart/getbook' , titre)
+  // }
 }
