@@ -78,8 +78,8 @@ export class DashboarComponent implements OnInit {
      this.id=this.ListLivres[i]._id
 
     const dialogRef = this.dialog.open(ConfirmationDialogComponent,{
-      width: '650px',
-      height: '400px',
+      width: '850px',
+      height: '600px',
       data:{
         titre:this.titre,
         auteur:this.auteur,
@@ -104,9 +104,12 @@ export class DashboarComponent implements OnInit {
         a.click();
         a.remove();
         snack.dismiss();
-        this.snackBar.open('book updated succusfuly', 'Fechar', {
+        this.snackBar.open('book updated succusfuly', '', {
           duration: 2000,
         });
+      }
+      else{
+        snack.dismiss()
       }
     });
   }

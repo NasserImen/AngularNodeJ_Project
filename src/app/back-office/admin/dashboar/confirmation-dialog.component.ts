@@ -43,7 +43,7 @@ export class ConfirmationDialogComponent {
     
       }
       ngOnInit() {
-    this.category=this.data.categorie
+  
     
        
        
@@ -68,15 +68,12 @@ export class ConfirmationDialogComponent {
 
      })
         }
-  onConfirmClick() {
+  onConfirmClick():void {
     var UpdatedData=this.Livre.value
-    console.log(UpdatedData);
     
     var   formData :FormData= new FormData()
   
   formData.set("titre",UpdatedData.titre  );
-  
-  
   formData.set('auteur', UpdatedData.auteur);
   formData.set('categorie', UpdatedData.categorie) ;  
   formData.set('maisonEdition', UpdatedData.maisonEdition)  ;
@@ -87,12 +84,18 @@ export class ConfirmationDialogComponent {
   formData.set('etat',UpdatedData.etat);
   
   // Append uploaded image to formdata
-  let fileLenght=this.UploadFiles.length;
-  if(fileLenght>0){
-  for(let i=0;i<fileLenght;i++){
-   formData.append('images',this.UploadFiles[i])
+  for(let i=0;i<this.UploadFiles.length;i++){
+  if(this.UploadFiles.length>0){
+    formData.set('images',this.UploadFiles[i])
   }
+  else if(this.UploadFiles.length<=0){
+    formData.set('images',this.data.images)
   }
+  console.log(formData.get('images'));
+  
+}
+  
+  
   
   this.LivresService.UpdateLivre(formData,this.data.id).subscribe(res=>{console.log(res),()=>{},()=>{};
   })
