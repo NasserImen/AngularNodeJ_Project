@@ -47,6 +47,7 @@ import { InterceptorsService } from './providers/interceptors.service';
     SharedModule,
     AdminModule,
     routing,
+    
   ],
   declarations: [
     AppComponent,
@@ -59,6 +60,7 @@ import { InterceptorsService } from './providers/interceptors.service';
     BreadcrumbComponent,
     OptionsComponent,
     FooterComponent,
+    
  
  
 
