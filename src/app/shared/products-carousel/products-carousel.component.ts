@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material';
 import { ProductDialogComponent } from './product-dialog/product-dialog.component';
 import { Data, AppService } from '../../app.service';
 import { Product } from "../../app.models";
+import{book} from "../../app.models";
 import { Settings, AppSettings } from 'src/app/app.settings';
 import {BooksService} from './books.service'
 import { Observable } from 'rxjs';
@@ -21,7 +22,9 @@ export class ProductsCarouselComponent implements OnInit {
   url:'localhost:3000/Livres'
   result : any
 
-  @Input('products') products: Array<Product> = [];
+ @Input('books') books : Array<book> =[];
+
+  @Input('products') products: Array<Product> = [];s$
   public config: SwiperConfigInterface = {};
   public settings: Settings;
   constructor(public appSettings:AppSettings, public appService:AppService, public dialog: MatDialog, private router: Router , private http:BooksService) { 
@@ -62,6 +65,12 @@ export class ProductsCarouselComponent implements OnInit {
     }
   }
 
+  getBooks(){
+    console.log(('imeen'));
+    
+    this.result=this.http.getbooks().subscribe(res=>{console.log(res),()=>{},()=>{}
+    })
+  }
 
 
   public openProductDialog(product){   
@@ -77,9 +86,5 @@ export class ProductsCarouselComponent implements OnInit {
     });
   }
 
-  getBooks(){
-    // this.result=this.http.getbooks(this.url + '/Livres')
-    return(this.result)
-  }
 
 }

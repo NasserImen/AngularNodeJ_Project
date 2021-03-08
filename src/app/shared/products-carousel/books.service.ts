@@ -8,12 +8,13 @@ import { Observable } from 'rxjs';
 })
 export class BooksService {
 
-   url = 'localhost:3000/Livres'
+   url = 'http://localhost:3000'
    result : any
 
   constructor( private http : HttpClient) { }
 
   getbooks():Observable<any>{
-    return this.result = this.http.get<any>(this.url + '/Livres');
+     this.result = this.http.get<any>(this.url + '/Livres/Livres');
+     return(this.result)
   }
 }
