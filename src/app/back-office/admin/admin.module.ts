@@ -9,6 +9,10 @@ import { PagesComponent } from 'src/app/pages/pages.component';
 import { BackOfficeComponent } from '../back-office.component';
 import {AddbookComponent} from '../admin/addbook/addbook.component'
 import { DashboarComponent } from './dashboar/dashboar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import { AddCategoryComponent } from './add-category/add-category.component';
+import { ConfirmationDialogComponent } from './dashboar/confirmation-dialog.component';
 export const routes = [
   {  
     path: '', 
@@ -16,6 +20,7 @@ export const routes = [
      component: AdminComponent, children: [
          { path: 'dashboard', component: DashboarComponent },
          { path: 'addbook', component: AddbookComponent },
+         { path:'addCategory', component:AddCategoryComponent},
        
     ]
  }
@@ -25,13 +30,21 @@ export const routes = [
   declarations: [
     AdminComponent,
     AddbookComponent,
-    DashboarComponent
+    DashboarComponent,
+    AddCategoryComponent,
+    ConfirmationDialogComponent
   ],
- 
+ entryComponents:[    ConfirmationDialogComponent
+ ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
+    ReactiveFormsModule,
+    FormsModule,
+    NgxDropzoneModule,
+    
+
     
     
   ]

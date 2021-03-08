@@ -44,6 +44,7 @@ import { AdminModule } from './back-office/admin/admin.module';
     SharedModule,
     AdminModule,
     routing,
+    
   ],
   declarations: [
     AppComponent,
@@ -56,6 +57,7 @@ import { AdminModule } from './back-office/admin/admin.module';
     BreadcrumbComponent,
     OptionsComponent,
     FooterComponent,
+    
  
 
     // AdminComponent,
