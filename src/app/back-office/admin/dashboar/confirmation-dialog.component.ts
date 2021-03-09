@@ -43,11 +43,8 @@ export class ConfirmationDialogComponent {
     
       }
       ngOnInit() {
-  
     
-       
-       
-      }
+  }
 
       onSelect(event){
         this.UploadFiles.push(...event.addedFiles)
@@ -91,17 +88,18 @@ export class ConfirmationDialogComponent {
   else if(this.UploadFiles.length<=0){
     formData.set('images',this.data.images)
   }
-  console.log(formData.get('images'));
   
 }
   
   
   
-  this.LivresService.UpdateLivre(formData,this.data.id).subscribe(res=>{console.log(res),()=>{},()=>{};
+  this.LivresService.UpdateLivre(formData,this.data.id).subscribe(res=>{console.log(res),err=>{},()=>{ 
+
+  };
   })
 
+  this.dialogRef.close(true);
   
-    this.dialogRef.close(true);
   }
 
 }

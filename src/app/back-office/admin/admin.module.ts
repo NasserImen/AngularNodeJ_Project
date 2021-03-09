@@ -15,7 +15,7 @@ import { AddCategoryComponent } from './add-category/add-category.component';
 import { ConfirmationDialogComponent } from './dashboar/confirmation-dialog.component';
 export const routes = [
   {  
-    path: '', 
+    path: 'admin', 
     
      component: AdminComponent, children: [
          { path: 'dashboard', component: DashboarComponent },

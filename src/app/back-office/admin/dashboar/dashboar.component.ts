@@ -62,7 +62,8 @@ export class DashboarComponent implements OnInit {
   }
   DeleteLivre(id){
     
-     this.LivresService.DeleteLivre(id).subscribe(res=>{console.log(res),()=>{},()=>{}; })
+     this.LivresService.DeleteLivre(id).subscribe(()=>{this.ngOnInit()
+     })
   }
   UpdateBook(i){
     this.titre=this.ListLivres[i].titre
@@ -111,6 +112,7 @@ export class DashboarComponent implements OnInit {
       else{
         snack.dismiss()
       }
+      this.ngOnInit()
     });
   }
 }
