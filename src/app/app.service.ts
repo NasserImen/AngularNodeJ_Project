@@ -25,6 +25,8 @@ export class AppService {
         0 //totalCartCount
     )
     public url = "/api";
+    
+
     constructor(public http:HttpClient, public snackBar: MatSnackBar) { }
     
     // public getCategories(): Observable<Category[]>{
@@ -400,5 +402,6 @@ export class AppService {
             { value: 'express', name: 'Express Delivery', desc: '$29.99 / Delivery in 1 business Days' }
         ]
     }
+
 
 } 
