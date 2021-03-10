@@ -8,7 +8,7 @@ export class Livre{
     images:string;
     stock:number;
     prix:number;
-    etat:string;
+    type:string;
     constructor(titre:string){
         this.titre = titre
     }

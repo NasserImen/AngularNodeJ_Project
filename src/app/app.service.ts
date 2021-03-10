@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material';
-import { Category, Product } from './app.models';
+import { Category, Product , book } from './app.models';
+import { environment } from 'src/environments/environment';
 
 export class Data {
     constructor(public categories: Category[],
@@ -24,11 +25,6 @@ export class AppService {
         0 //totalCartCount
     )
     
-// our wor
-
-// url : 'localhost:300'
-
-// end our work
 
 
     public url = "assets/data/";
@@ -38,8 +34,8 @@ export class AppService {
         return this.http.get<Category[]>(this.url + 'categories.json');
     }
    
-    public getProducts(type): Observable<Product[]>{        
-        return this.http.get<Product[]>(this.url + type + '-products.json');
+    public getProducts(type): Observable<book[]>{        
+        return this.http.get<book[]>(this.url + type + '/Livres/Livres');
     }
 
     public getProductById(id): Observable<Product>{

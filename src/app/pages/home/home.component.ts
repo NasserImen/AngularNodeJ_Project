@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../../app.service';
-import { Product } from "../../app.models";
+import { book } from "../../app.models";
 
 @Component({
   selector: 'app-home',
@@ -19,10 +19,10 @@ export class HomeComponent implements OnInit {
 
   public brands = [];
   public banners = [];
-  public featuredProducts: Array<Product>;
-  public onSaleProducts: Array<Product>;
-  public topRatedProducts: Array<Product>;
-  public newArrivalsProducts: Array<Product>;
+  public featuredProducts: Array<book>;
+  public onSaleProducts: Array<book>;
+  public topRatedProducts: Array<book>;
+  public newArrivalsProducts: Array<book>;
 
 
   constructor(public appService:AppService) { }

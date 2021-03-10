@@ -164,6 +164,7 @@
         </div>
 
         <div *ngIf="viewType == 'list'" fxLayout="row wrap" class="products-wrapper">
+            
             <div  *ngFor="let product of products | paginate: { itemsPerPage: count, currentPage: page }" fxFlex="100" class="col">
                 <mat-card class="product-item">
                     <div fxLayout="row wrap">

@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { ProductDialogComponent } from '../../../shared/products-carousel/product-dialog/product-dialog.component';
 import { AppService } from '../../../app.service';
-import { Product, Category } from "../../../app.models";
+import { book, Category } from "../../../app.models";
 import { Settings, AppSettings } from 'src/app/app.settings';
 
 @Component({
@@ -21,7 +21,7 @@ export class BrandComponent implements OnInit {
   public count:any;
   public sortings = ['Sort by Default', 'Best match', 'Lowest first', 'Highest first'];
   public sort:any;
-  public products: Array<Product> = [];
+  public books: Array<book> = [];
   public categories:Category[];
   public brands = [];
   public priceFrom: number = 750;
@@ -57,10 +57,10 @@ export class BrandComponent implements OnInit {
 
   public getAllProducts(){
     this.appService.getProducts("brand").subscribe(data=>{
-      this.products = data; 
+      this.books = data; 
       //for show more product  
       for (var index = 0; index < 3; index++) {
-        this.products = this.products.concat(this.products);        
+        this.books = this.books.concat(this.books);        
       }
     });
   }
