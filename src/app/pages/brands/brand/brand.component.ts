@@ -3,8 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { ProductDialogComponent } from '../../../shared/products-carousel/product-dialog/product-dialog.component';
 import { AppService } from '../../../app.service';
-import { book, Category } from "../../../app.models";
+import { Product, Category } from "../../../app.models";
 import { Settings, AppSettings } from 'src/app/app.settings';
+import { Livre } from 'src/app/back-office/admin/Models/LivreModel';
 
 @Component({
   selector: 'app-brand',
@@ -21,7 +22,7 @@ export class BrandComponent implements OnInit {
   public count:any;
   public sortings = ['Sort by Default', 'Best match', 'Lowest first', 'Highest first'];
   public sort:any;
-  public books: Array<book> = [];
+  public products: Array<Livre> = [];
   public categories:Category[];
   public brands = [];
   public priceFrom: number = 750;
@@ -51,31 +52,31 @@ export class BrandComponent implements OnInit {
       this.viewCol = 33.3;
     };
 
-    this.getCategories();
+    // this.getCategories();
     this.getAllProducts();  
   }
 
   public getAllProducts(){
-    this.appService.getProducts("brand").subscribe(data=>{
-      this.books = data; 
+    this.appService.getProducts().subscribe(data=>{
+      this.products = data; 
       //for show more product  
       for (var index = 0; index < 3; index++) {
-        this.books = this.books.concat(this.books);        
+        this.products = this.products.concat(this.products);        
       }
     });
   }
 
-  public getCategories(){  
-    if(this.appService.Data.categories.length == 0) { 
-      this.appService.getCategories().subscribe(data => {
-        this.categories = data;
-        this.appService.Data.categories = data;
-      });
-    }
-    else{
-      this.categories = this.appService.Data.categories;
-    }
-  }
+  // public getCategories(){  
+  //   if(this.appService.Data.categories.length == 0) { 
+  //     this.appService.getCategories().subscribe(data => {
+  //       this.categories = data;
+  //       this.appService.Data.categories = data;
+  //     });
+  //   }
+  //   else{
+  //     this.categories = this.appService.Data.categories;
+  //   }
+  // }
 
   ngOnDestroy() {
     this.sub.unsubscribe();

@@ -27,17 +27,17 @@ export class PagesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getCategories();
+    // this.getCategories();
     this.sidenavMenuItems = this.sidenavMenuService.getSidenavMenuItems();
   } 
 
-  public getCategories(){    
-    this.appService.getCategories().subscribe(data => {
-      this.categories = data;
-      this.category = data[0];
-      this.appService.Data.categories = data;
-    })
-  }
+  // public getCategories(){    
+  //   this.appService.getCategories().subscribe(data => {
+  //     this.categories = data;
+  //     this.category = data[0];
+  //     this.appService.Data.categories = data;
+  //   })
+  // }
 
   public changeCategory(event){
     if(event.target){

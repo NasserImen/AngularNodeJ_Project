@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material';
-import { Category, Product , book } from './app.models';
+import { Category, Product } from './app.models';
+import { Livre } from './back-office/admin/Models/LivreModel';
 import { environment } from 'src/environments/environment';
 
 export class Data {
@@ -24,27 +25,26 @@ export class AppService {
         null, //totalPrice,
         0 //totalCartCount
     )
+    public url = environment.baseURL;
     
 
-
-    public url = "assets/data/";
     constructor(public http:HttpClient, public snackBar: MatSnackBar) { }
     
-    public getCategories(): Observable<Category[]>{
-        return this.http.get<Category[]>(this.url + 'categories.json');
-    }
+    // public getCategories(): Observable<Category[]>{
+    //     return this.http.get<Category[]>(this.url + 'categories.json');
+    // }
    
-    public getProducts(type): Observable<book[]>{        
-        return this.http.get<book[]>(this.url + type + '/Livres/Livres');
+    public getProducts(): Observable<Livre[]>{        
+        return this.http.get<Livre[]>(this.url+"/Livres/Livres");
     }
 
-    public getProductById(id): Observable<Product>{
-        return this.http.get<Product>(this.url + 'product-' + id + '.json');
-    }
+    // public getProductById(id): Observable<Product>{
+    //     return this.http.get<Product>(this.url + 'product-' + id + '.json');
+    // }
 
-    public getBanners(): Observable<any[]>{
-        return this.http.get<any[]>(this.url + 'banners.json');
-    }
+    // public getBanners(): Observable<any[]>{
+    //     return this.http.get<any[]>(this.url + 'banners.json');
+    // }
 
     public addToCompare(product:Product){
         let message, status;

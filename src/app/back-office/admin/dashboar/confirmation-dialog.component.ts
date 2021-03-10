@@ -46,9 +46,7 @@ export class ConfirmationDialogComponent {
     this.category=this.data.categorie
     console.log(this.data.images);
     
-       
-       
-      }
+  }
 
       onSelect(event){
         this.UploadFiles.push(...event.addedFiles)
@@ -69,15 +67,12 @@ export class ConfirmationDialogComponent {
 
      })
         }
-  onConfirmClick() {
+  onConfirmClick():void {
     var UpdatedData=this.Livre.value
-    console.log(UpdatedData);
     
     var   formData :FormData= new FormData()
   
   formData.set("titre",UpdatedData.titre  );
-  
-  
   formData.set('auteur', UpdatedData.auteur);
   formData.set('categorie', UpdatedData.categorie) ;  
   formData.set('maisonEdition', UpdatedData.maisonEdition)  ;
@@ -89,20 +84,24 @@ export class ConfirmationDialogComponent {
   
   // Append uploaded image to formdata
   for(let i=0;i<this.UploadFiles.length;i++){
-    if(this.UploadFiles.length>0){
-      formData.set('images',this.UploadFiles[i])
-    }
-    else if(this.UploadFiles.length<=0){
-      formData.set('images',this.data.images)
-    }
-  
+  if(this.UploadFiles.length>0){
+    formData.set('images',this.UploadFiles[i])
+  }
+  else if(this.UploadFiles.length<=0){
+    formData.set('images',this.data.images)
   }
   
-  this.LivresService.UpdateLivre(formData,this.data.id).subscribe(res=>{console.log(res),()=>{},()=>{};
+}
+  
+  
+  
+  this.LivresService.UpdateLivre(formData,this.data.id).subscribe(res=>{console.log(res),err=>{},()=>{ 
+
+  };
   })
 
+  this.dialogRef.close(true);
   
-    this.dialogRef.close(true);
   }
 
 }
