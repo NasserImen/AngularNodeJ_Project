@@ -7,6 +7,7 @@ import { Product, Category } from "../../app.models";
 import { Settings, AppSettings } from 'src/app/app.settings';
 import { AddBooksService } from 'src/app/back-office/admin/add-books.service';
 import { Livre } from 'src/app/back-office/admin/Models/LivreModel';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-products',
@@ -65,6 +66,7 @@ export class ProductsComponent implements OnInit {
   // ]; 
   public page:any;
   public settings: Settings;
+  baseUrl=environment.baseURL;
 
   constructor(public appSettings:AppSettings, 
               private activatedRoute: ActivatedRoute, 

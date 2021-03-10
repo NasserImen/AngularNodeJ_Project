@@ -10,6 +10,7 @@ import{book} from "../../app.models";
 import { Settings, AppSettings } from 'src/app/app.settings';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Livre } from 'src/app/back-office/admin/Models/LivreModel';
 
 @Component({
   selector: 'app-products-carousel',
@@ -19,12 +20,12 @@ import { environment } from 'src/environments/environment';
 export class ProductsCarouselComponent implements OnInit {
 
 
-  url = environment.baseURL
+  baseUrl = environment.baseURL
   result : any
 
- @Input('books') books : Array<book> =[];
+ @Input('books') books : Array<Livre> =[];
 
-  @Input('products') products: Array<Product> = [];s$
+  @Input('products') products: Array<Livre> = [];s$
   public config: SwiperConfigInterface = {};
   public settings: Settings;
   constructor(public appSettings:AppSettings, public appService:AppService, public dialog: MatDialog, private router: Router ) { 
