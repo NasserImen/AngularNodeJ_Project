@@ -8,8 +8,8 @@ import { Data, AppService } from '../../app.service';
 import { Product } from "../../app.models";
 import{book} from "../../app.models";
 import { Settings, AppSettings } from 'src/app/app.settings';
-import {BooksService} from './books.service'
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-products-carousel',
@@ -19,7 +19,7 @@ import { Observable } from 'rxjs';
 export class ProductsCarouselComponent implements OnInit {
 
 
-  url:'localhost:3000/Livres'
+  url = environment.baseURL
   result : any
 
  @Input('books') books : Array<book> =[];
@@ -27,11 +27,15 @@ export class ProductsCarouselComponent implements OnInit {
   @Input('products') products: Array<Product> = [];s$
   public config: SwiperConfigInterface = {};
   public settings: Settings;
-  constructor(public appSettings:AppSettings, public appService:AppService, public dialog: MatDialog, private router: Router , private http:BooksService) { 
+  constructor(public appSettings:AppSettings, public appService:AppService, public dialog: MatDialog, private router: Router ) { 
     this.settings = this.appSettings.settings;
   }
 
-  ngOnInit() { }
+
+
+
+  ngOnInit() {
+   }
   
   ngAfterViewInit(){
     this.config = {
@@ -65,12 +69,7 @@ export class ProductsCarouselComponent implements OnInit {
     }
   }
 
-  getBooks(){
-    console.log(('imeen'));
-    
-    this.result=this.http.getbooks().subscribe(res=>{console.log(res),()=>{},()=>{}
-    })
-  }
+
 
 
   public openProductDialog(product){   
@@ -79,9 +78,9 @@ export class ProductsCarouselComponent implements OnInit {
         panelClass: 'product-dialog',
         direction: (this.settings.rtl) ? 'rtl' : 'ltr'
     });
-    dialogRef.afterClosed().subscribe(product => {
-      if(product){
-        this.router.navigate(['/products', product.id, product.name]); 
+    dialogRef.afterClosed().subscribe(book => {
+      if(book){
+        this.router.navigate(['/books', book._id, product.titre]); 
       }
     });
   }

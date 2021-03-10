@@ -1,59 +1,62 @@
-    <div class="p-2 mt-1">
-        <form [formGroup]='Livre' enctype="multipart/form-data" >     
-            <h3>Add new book</h3>
+	<div class="p-2 mt-1">
+        <form  enctype="multipart/form-data" [formGroup]="Livre" >     
+            <h3>Update book</h3>
 
           <div fxLayout="row wrap">
             <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
               <mat-form-field class="w-100">
-                  <input matInput placeholder="Title" formControlName='titre' >
-                  <mat-error *ngIf='submitted && Livre.controls.titre.errors?.required'>Title is required</mat-error>
+                  <input matInput placeholder="Title" formControlName="titre" formControlName="titre">
+                  <!-- <mat-error *ngIf='submitted && Livre.controls.titre.errors?.required'>Title is required</mat-error> -->
               </mat-form-field>
             </div>
             <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
               <mat-form-field class="w-100">
-                  <input matInput placeholder="Author" formControlName='auteur' >
-                  <mat-error *ngIf=' submitted && Livre.controls.auteur.errors?.required'>Author required</mat-error>
+                  <input matInput placeholder="Author" formControlName="auteur" >
+                  <!-- <mat-error *ngIf=' submitted && Livre.controls.auteur.errors?.required'>Author required</mat-error> -->
               </mat-form-field>
             </div>
             <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
               <mat-form-field class="w-100">
-                  <input matInput placeholder="Edition Company" formControlName='maisonEdition'>
-                  <mat-error *ngIf='submitted && Livre.controls.maisonEdition.errors?.required'>Edition Company is required</mat-error>
+                  <input matInput placeholder="Edition Company" formControlName="maisonEdition" >
+                  <!-- <mat-error *ngIf='submitted && Livre.controls.maisonEdition.errors?.required'>Edition Company is required</mat-error> -->
 
               </mat-form-field>
             </div>
             <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
               <mat-form-field class="w-100">
-                  <input matInput placeholder="Year" type="number" formControlName='anneeEdition'>
-                  <mat-error *ngIf='submitted && Livre.controls.anneeEdition.errors?.required'>Year is required</mat-error>
+                  <input matInput placeholder="Year" type="number" formControlName="anneeEdition"  >
+                  <!-- <mat-error *ngIf='submitted && Livre.controls.anneeEdition.errors?.required'>Year is required</mat-error> -->
 
                 </mat-form-field>
             </div>
             <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
               <mat-form-field class='w-100'>
                 <mat-label >Language</mat-label>
-                <mat-select formControlName='langue'>
+                <mat-select formControlName="langue" >
+                  
+
                   <mat-option value=""></mat-option>
                   <mat-option value="French">French</mat-option>
                   <mat-option value="English">English</mat-option>
                   <mat-option value="Arabic">Arabic</mat-option>
 
                 </mat-select>
-                <mat-error *ngIf='submitted &&  Livre.controls.langue.errors?.required'>Language is required</mat-error>
+                <!-- <mat-error *ngIf='submitted &&  Livre.controls.langue.errors?.required'>Language is required</mat-error> -->
   
               </mat-form-field>
             </div>
             <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
               <mat-form-field class='w-100'>
                 <mat-label>Category</mat-label>
-                <mat-select formControlName='categorie'>
-                  <mat-option value=""></mat-option>
-                   <mat-option value="Classic Novel">Classic novel</mat-option>
+                <mat-select formControlName="categorie" >
+
+                  <mat-option value=""></mat-option> -->
+                   <mat-option value="Classic Novel" >Classic Novel</mat-option>
                   <mat-option value="History">History</mat-option>
                   <mat-option value="Pratical books">Pratical books</mat-option>
                   <mat-option value="Real stories">Real stories</mat-option>
                   <mat-option value="Contemporary novels">Contemporary novels</mat-option>
-                  <mat-option value="News books">News books</mat-option>
+                  <mat-option value="News books">News books</mat-option> 
                   <mat-option value="Scientific books">Scientific books</mat-option>
                   <mat-option value="Detective novels">Detective novels</mat-option>
                   <mat-option value="Comics">Comics</mat-option>
@@ -67,26 +70,27 @@
 
 
                 </mat-select>
-                <mat-error *ngIf=' submitted &&Livre.controls.categorie.errors?.required'>Category is required</mat-error>
+                <!-- <mat-error *ngIf=' submitted &&Livre.controls.categorie.errors?.required'>Category is required</mat-error> -->
   
               </mat-form-field>
             </div>
             <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
               <mat-form-field class="w-100">
-                  <input matInput placeholder="Stock" type="number" formControlName='stock'>
-                  <mat-error *ngIf='submitted && Livre.controls.stock.errors?.required'>Stock is required</mat-error>
+                  <input matInput placeholder="Stock" type="number" formControlName="stock" >
+                  <!-- <mat-error *ngIf='submitted && Livre.controls.stock.errors?.required'>Stock is required</mat-error> -->
               </mat-form-field>
             </div>
             <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
               <mat-form-field class="w-100">
-                  <input matInput placeholder="Price" type="number" formControlName='prix'>
-                  <mat-error *ngIf='submitted && Livre.controls.prix.errors?.required'>Price is required</mat-error>
+                  <input matInput placeholder="Price" type="number" formControlName="prix">
+                  <!-- <mat-error *ngIf='submitted && Livre.controls.prix.errors?.required'>Price is required</mat-error> -->
               </mat-form-field>
             </div>
             <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+
             <mat-form-field class='w-100'>
               <mat-label>Type</mat-label>
-              <mat-select formControlName='type'>
+              <mat-select formControlName="type" >
                 <mat-option value=""></mat-option>
 
                 <mat-option value="featured">Featured</mat-option>
@@ -94,24 +98,23 @@
                 <mat-option value="top rated">Top Rated</mat-option>
                 <mat-option value="new arrivals">New Arrivals</mat-option>
               </mat-select>
-              <mat-error *ngIf='submitted && Livre.controls.type.errors?.required'>Status is required</mat-error>
-
+              <!-- <mat-error *ngIf='submitted && Livre.controls.type.errors?.required'>Status is required</mat-error> -->
             </mat-form-field>
           </div>
-          <div fxFlex="100" fxFlex.gt-sm="26" class="px-1">
-
-          <ngx-dropzone  (change)="onSelect($event)">
-            <ngx-dropzone-label>Drop it here!</ngx-dropzone-label>
-            <ngx-dropzone-preview *ngFor="let f of UploadFiles">
-              <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-            </ngx-dropzone-preview>
-          </ngx-dropzone>
-            </div>
-
-                    
-            <div fxFlex="100" class="text-center mt-2">
-                <button mat-stroked-button  mat-raised-button color="primary" (click)='AddLivre(message,action)' >Save</button>
-            </div>
+          <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+            <mat-label>Book's image:</mat-label> <br>
+            <img src="http://localhost:3000/{{data.images}}" width="60px" length="60px" >
           </div>
-        </form>
-    </div>
+          <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
+            <mat-label>Change book's image:</mat-label> <br>
+
+            <ngx-dropzone  (change)="onSelect($event)">
+              <ngx-dropzone-label>Drop it here!</ngx-dropzone-label>
+              <ngx-dropzone-preview *ngFor="let f of UploadFiles">
+                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+              </ngx-dropzone-preview>
+            </ngx-dropzone>
+              </div>
+</div>
+	<button mat-raised-button color="warn" (click)="onConfirmClick()" tabindex="1">Update book</button>
+	<button mat-raised-button mat-dialog-close tabindex="-1">Close</button>

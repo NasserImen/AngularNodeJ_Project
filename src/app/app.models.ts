@@ -31,6 +31,9 @@ export class Product {
   langue:{type:String,required:true}
   images: {type:String,required:true}
   stock:{type:Number,required:true}
-  etat:{type:String,required:true}
+  type:{type:String,required:true}
   prix:{type:number,required:true}
+  cartCount:number
+  availibilityCount: number
+  
  }

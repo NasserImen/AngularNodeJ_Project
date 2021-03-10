@@ -9,7 +9,12 @@ import { PagesComponent } from 'src/app/pages/pages.component';
 import { BackOfficeComponent } from '../back-office.component';
 import {AddbookComponent} from '../admin/addbook/addbook.component'
 import { DashboarComponent } from './dashboar/dashboar.component';
-import { ListbooksVComponent } from './listbooks-v/listbooks-v.component';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import { AddCategoryComponent } from './add-category/add-category.component';
+import { ConfirmationDialogComponent } from './dashboar/confirmation-dialog.component';
+// import { ListbooksVComponent } from './listbooks-v/listbooks-v.component';
 export const routes = [
   {  
     path: 'admin', 
@@ -17,7 +22,8 @@ export const routes = [
      component: AdminComponent, children: [
          { path: 'dashboard', component: DashboarComponent },
          { path: 'addbook', component: AddbookComponent },
-         { path: 'listbooksV',component:ListbooksVComponent }
+         { path:'addCategory', component:AddCategoryComponent}
+        //  { path: 'listbooksV',component:ListbooksVComponent }
        
     ]
  }
@@ -28,13 +34,22 @@ export const routes = [
     AdminComponent,
     AddbookComponent,
     DashboarComponent,
-    ListbooksVComponent
+
+    AddCategoryComponent,
+    ConfirmationDialogComponent
+
   ],
- 
+ entryComponents:[    ConfirmationDialogComponent
+ ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
+    ReactiveFormsModule,
+    FormsModule,
+    NgxDropzoneModule,
+    
+
     
     
   ]

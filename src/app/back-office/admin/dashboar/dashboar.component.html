@@ -1,4 +1,31 @@
+
+<div class="p-2 mt-1">
+        <h3>List of books</h3>
+</div>
+
 <div class="mat-table orders-table">
+    <div class="mat-header-row">
+      <div class="mat-header-cell">Title</div>
+      <div class="mat-header-cell">Author</div>
+      <div class="mat-header-cell">Current stock</div>
+      <div class="mat-header-cell">Sold quantity</div>
+      <div class="mat-header-cell"></div>
+    </div>
+    <div *ngFor="let livre of ListLivres;index as i" class="mat-row">
+      <div class="mat-cell"><span class="order">{{livre.titre}}</span></div>
+      <div class="mat-cell">{{livre.auteur}}</div>
+      <div class="mat-cell">{{livre.stock}}</div>
+      <div class="mat-cell">xxxxxx</div>     
+      <div class="mat-cell"></div>
+        <div class="p-1 actions">          
+          <button mat-mini-fab color="warn" matTooltip="Delete" (click)='DeleteLivre(livre._id)'>
+              <mat-icon>delete</mat-icon>
+          </button>
+          <button  mat-mini-fab color="primary" matTooltip="Update book" class="btn-invoice" (click)='UpdateBook(i)'>
+            <mat-icon>update</mat-icon>
+            </button>
+        </div>
+<!-- <div class="mat-table orders-table">
     <div class="mat-header-row">
       <div class="mat-header-cell">Name</div>
       <div class="mat-header-cell">Phone</div>
@@ -22,4 +49,6 @@
         </div>
       </div>      
     </div>
+  </div> -->
   </div>
+</div>

@@ -5,6 +5,8 @@ import { ProductDialogComponent } from '../../shared/products-carousel/product-d
 import { AppService } from '../../app.service';
 import { Product, Category } from "../../app.models";
 import { Settings, AppSettings } from 'src/app/app.settings';
+import { AddBooksService } from 'src/app/back-office/admin/add-books.service';
+import { Livre } from 'src/app/back-office/admin/Models/LivreModel';
 
 @Component({
   selector: 'app-products',
@@ -21,11 +23,12 @@ export class ProductsComponent implements OnInit {
   public count:any;
   public sortings = ['Sort by Default', 'Best match', 'Lowest first', 'Highest first'];
   public sort:any;
-  public products: Array<Product> = [];
+  public products: Array<Livre> = [];
   public categories:Category[];
   public brands = [];
   public priceFrom: number = 30;
   public priceTo: number = 200;
+  ListLivres:Livre[]=[];
   // public colors = [
   //   { name: "#5C6BC0", selected: false },
   //   { name: "#66BB6A", selected: false },
@@ -62,13 +65,20 @@ export class ProductsComponent implements OnInit {
   // ]; 
   public page:any;
   public settings: Settings;
+
   constructor(public appSettings:AppSettings, 
               private activatedRoute: ActivatedRoute, 
               public appService:AppService, 
               public dialog: MatDialog, 
-              private router: Router) {
+              private router: Router,
+              private LivresService:AddBooksService
+              ) {
     this.settings = this.appSettings.settings;
   }
+
+
+
+
 
   ngOnInit() {
     this.count = this.counts[0];
@@ -82,38 +92,38 @@ export class ProductsComponent implements OnInit {
     if(window.innerWidth < 1280){
       this.viewCol = 33.3;
     };
-
-    this.getCategories();
-    this.getBrands();
+    
+  
+    // this.getCategories();
+    // this.getBrands();
     this.getAllProducts();   
-  }
-
+ 
+    }
   public getAllProducts(){
-    this.appService.getProducts("featured").subscribe(data=>{
-      this.products = data; 
+    this.appService.getProducts().subscribe(res=>{
+      this.products = res; 
       //for show more product  
-      for (var index = 0; index < 3; index++) {
-        this.products = this.products.concat(this.products);        
-      }
-    });
+     
+    },err=>{},()=>{console.log(this.products);
+     });
   }
 
-  public getCategories(){  
-    if(this.appService.Data.categories.length == 0) { 
-      this.appService.getCategories().subscribe(data => {
-        this.categories = data;
-        this.appService.Data.categories = data;
-      });
-    }
-    else{
-      this.categories = this.appService.Data.categories;
-    }
-  }
+  // public getCategories(){  
+  //   if(this.appService.Data.categories.length == 0) { 
+  //     this.appService.getCategories().subscribe(data => {
+  //       this.categories = data;
+  //       this.appService.Data.categories = data;
+  //     });
+  //   }
+  //   else{
+  //     this.categories = this.appService.Data.categories;
+  //   }
+  // }
 
-  public getBrands(){
-    this.brands = this.appService.getBrands();
-    this.brands.forEach(brand => { brand.selected = false });
-  }
+  // public getBrands(){
+  //   this.brands = this.appService.getBrands();
+  //   this.brands.forEach(brand => { brand.selected = false });
+  // }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
@@ -139,18 +149,18 @@ export class ProductsComponent implements OnInit {
     this.viewCol = viewCol;
   }
 
-  public openProductDialog(product){   
-    let dialogRef = this.dialog.open(ProductDialogComponent, {
-        data: product,
-        panelClass: 'product-dialog',
-        direction: (this.settings.rtl) ? 'rtl' : 'ltr'
-    });
-    dialogRef.afterClosed().subscribe(product => {
-      if(product){
-        this.router.navigate(['/products', product.id, product.name]); 
-      }
-    });
-  }
+  // public openProductDialog(product){   
+  //   let dialogRef = this.dialog.open(ProductDialogComponent, {
+  //       data: product,
+  //       panelClass: 'product-dialog',
+  //       direction: (this.settings.rtl) ? 'rtl' : 'ltr'
+  //   });
+  //   dialogRef.afterClosed().subscribe(product => {
+  //     if(product){
+  //       this.router.navigate(['/products', product.id, product.name]); 
+  //     }
+  //   });
+  // }
 
   public onPageChanged(event){
       this.page = event;
@@ -158,10 +168,10 @@ export class ProductsComponent implements OnInit {
       window.scrollTo(0,0); 
   }
 
-  public onChangeCategory(event){
-    if(event.target){
-      this.router.navigate(['/products', event.target.innerText.toLowerCase()]); 
-    }   
-  }
+  // public onChangeCategory(event){
+  //   if(event.target){
+  //     this.router.navigate(['/products', event.target.innerText.toLowerCase()]); 
+  //   }   
+  // }
 
 }
