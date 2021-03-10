@@ -20,7 +20,7 @@ export class ConfirmationDialogComponent {
     langue:new FormControl(this.data.langue,[Validators.required]),
     stock:new FormControl(this.data.stock,[Validators.required]),
     prix:new FormControl(this.data.prix,[Validators.required]),
-    etat:new FormControl(this.data.etat,[Validators.required])
+    type:new FormControl(this.data.type,[Validators.required])
   })
   LivreUpdated=new FormGroup({
     titre:new FormControl(),
@@ -31,7 +31,7 @@ export class ConfirmationDialogComponent {
     langue:new FormControl(),
     stock:new FormControl(),
     prix:new FormControl(),
-    etat:new FormControl()
+    type:new FormControl()
   })
   category:any;
   UploadFiles:File[]=[];
@@ -61,7 +61,7 @@ export class ConfirmationDialogComponent {
       langue:new FormControl(livre.langue),
       stock:new FormControl(livre.stock),
       prix:new FormControl(livre.prix),
-      etat:new FormControl(livre.etat)
+      type:new FormControl(livre.type)
 
      })
         }
@@ -78,7 +78,7 @@ export class ConfirmationDialogComponent {
   formData.set('langue',UpdatedData.langue);
   formData.set('stock',UpdatedData.stock) ;
   formData.set('prix',UpdatedData.prix);
-  formData.set('etat',UpdatedData.etat);
+  formData.set('type',UpdatedData.type);
   
   // Append uploaded image to formdata
   for(let i=0;i<this.UploadFiles.length;i++){

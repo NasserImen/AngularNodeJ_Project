@@ -21,7 +21,7 @@ export class DashboarComponent implements OnInit {
  categorie:string
  stock:number;
  prix:number;
- etat:string
+ type:string
  images:string;
  langue:string
  id:any;
@@ -42,7 +42,7 @@ export class DashboarComponent implements OnInit {
         anneeEdition:value,
         categorie:value,
         stock:value,
-        etat:value,
+        type:value,
         prix:value,
         images:value,
         langue:value,
@@ -72,7 +72,7 @@ export class DashboarComponent implements OnInit {
     this.anneeEdition=this.ListLivres[i].anneeEdition
     this.categorie=this.ListLivres[i].categorie
     this.stock=this.ListLivres[i].stock
-    this.etat=this.ListLivres[i].etat
+    this.type=this.ListLivres[i].type
     this.prix=this.ListLivres[i].prix
     this.images=this.ListLivres[i].images
     this.langue=this.ListLivres[i].langue
@@ -88,7 +88,7 @@ export class DashboarComponent implements OnInit {
         anneeEdition:this.anneeEdition,
         categorie:this.categorie,
         stock:this.stock,
-        etat:this.etat,
+        type:this.type,
         prix:this.prix,
         images:this.images,
         langue:this.langue,

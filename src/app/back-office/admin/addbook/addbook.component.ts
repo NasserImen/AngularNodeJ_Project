@@ -22,7 +22,7 @@ export class AddbookComponent implements OnInit {
   langue:new FormControl('',[Validators.required]),
   stock:new FormControl('',[Validators.required]),
   prix:new FormControl('',[Validators.required]),
-  etat:new FormControl('',[Validators.required])
+  type:new FormControl('',[Validators.required])
 })
 livres:Livre[];
 UploadFiles:File[]=[];
@@ -51,7 +51,7 @@ formData.set('anneeEdition', data.anneeEdition);
 formData.set('langue',data.langue);
 formData.set('stock',data.stock) ;
 formData.set('prix',data.prix);
-formData.set('etat',data.etat);
+formData.set('type',data.type);
 
 //Append uploaded image to formdata
 let fileLenght=this.UploadFiles.length;
