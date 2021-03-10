@@ -28,12 +28,18 @@
         <a mat-button routerLink="/compare">Compare <span *ngIf="settings.rtl">&rlm;</span>({{appService.Data.compareList.length}})</a>
         <a mat-button routerLink="/wishlist">Wishlist <span *ngIf="settings.rtl">&rlm;</span>({{appService.Data.wishList.length}})</a>
     </span>  
-
-    <a mat-button [matMenuTriggerFor]="accountMenu" #accountMenuTrigger="matMenuTrigger">
-        <mat-icon class="mat-icon-sm account-icon">person</mat-icon> <span fxShow="false" fxShow.gt-sm>account</span> <mat-icon class="mat-icon-sm caret">arrow_drop_down</mat-icon>
-    </a>
-    <mat-menu #accountMenu="matMenu" [overlapTrigger]="false" xPosition="before" class="app-dropdown account">
-        <span (mouseleave)="accountMenuTrigger.closeMenu()">
+   
+        <a mat-button *ngIf="!isLoginSubject" routerLink="/sign-in">Sign in</a>
+    
+   
+    
+        <a mat-button *ngIf="isLoginSubject" [matMenuTriggerFor]="accountMenu" #accountMenuTrigger="matMenuTrigger" > 
+            <mat-icon class="mat-icon-sm account-icon">person</mat-icon> <span fxShow="false" fxShow.gt-sm >account</span> <mat-icon class="mat-icon-sm caret">arrow_drop_down</mat-icon>
+        </a>
+   
+   
+    <mat-menu #accountMenu="matMenu" [overlapTrigger]="false" xPosition="before" class="app-dropdown account" >
+        <span (mouseleave)="accountMenuTrigger.closeMenu()" >
             <div fxLayout="row" fxLayoutAlign="space-around center" class="user-info">                   
                 <img src="assets/images/others/user.jpg" alt="user-image" width="50">
                 <p>Emilio Verdines <br> <small>emilio_v <span *ngIf="settings.rtl">&rlm;</span>(152<mat-icon class="mat-icon-xs">star</mat-icon>)</small></p>
@@ -66,5 +72,6 @@
             </a>
         </span>
     </mat-menu>    
+    
 
 </div>  
