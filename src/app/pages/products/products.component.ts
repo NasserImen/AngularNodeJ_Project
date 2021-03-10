@@ -65,6 +65,7 @@ export class ProductsComponent implements OnInit {
   // ]; 
   public page:any;
   public settings: Settings;
+
   constructor(public appSettings:AppSettings, 
               private activatedRoute: ActivatedRoute, 
               public appService:AppService, 
@@ -74,6 +75,10 @@ export class ProductsComponent implements OnInit {
               ) {
     this.settings = this.appSettings.settings;
   }
+
+
+
+
 
   ngOnInit() {
     this.count = this.counts[0];

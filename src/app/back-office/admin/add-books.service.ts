@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, ObservableInput } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Livre } from './Models/LivreModel';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AddBooksService {
-  livreUrl:string='/api'
+  livreUrl= environment.baseURL
 AddLivres(livre):Observable<any> {
   return this.http.post<any>(this.livreUrl+"/Livres/addLivre",livre);
 

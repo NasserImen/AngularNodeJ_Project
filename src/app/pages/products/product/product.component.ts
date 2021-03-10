@@ -25,8 +25,9 @@ export class ProductComponent implements OnInit {
   public form: FormGroup;
   public relatedProducts: Array<Livre>;
 
-  constructor(public appService:AppService, private activatedRoute: ActivatedRoute, public dialog: MatDialog, public formBuilder: FormBuilder) {  }
-
+  constructor(public appService:AppService, private activatedRoute: ActivatedRoute, public dialog: MatDialog, public formBuilder: FormBuilder ) {  }
+result : any
+books =[]
   ngOnInit() {      
     // this.sub = this.activatedRoute.params.subscribe(params => { 
     //   this.getProductById(params['id']); 

@@ -85,17 +85,16 @@
             </div>
             <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
             <mat-form-field class='w-100'>
-              <mat-label>Status</mat-label>
+              <mat-label>Type</mat-label>
               <mat-select formControlName='type'>
                 <mat-option value=""></mat-option>
 
-                <mat-option value="featured">featured</mat-option>
-                <mat-option value="on sale">on sale</mat-option>
-                <mat-option value="top rated">top rated</mat-option>
-                <mat-option value="new arrivals">new arrivals</mat-option>
-
+                <mat-option value="featured">Featured</mat-option>
+                <mat-option value="on sale">On Sale</mat-option>
+                <mat-option value="top rated">Top Rated</mat-option>
+                <mat-option value="new arrivals">New Arrivals</mat-option>
               </mat-select>
-              <mat-error *ngIf='submitted && Livre.controls.etat.errors?.required'>Status is required</mat-error>
+              <mat-error *ngIf='submitted && Livre.controls.type.errors?.required'>Status is required</mat-error>
 
             </mat-form-field>
           </div>

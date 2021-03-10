@@ -43,6 +43,8 @@ export class ConfirmationDialogComponent {
     
       }
       ngOnInit() {
+    this.category=this.data.categorie
+    console.log(this.data.images);
     
   }
 
