@@ -142,7 +142,7 @@
                         <mat-chip color="warn" selected="true">{{product.discount}}% OFF</mat-chip>
                     </mat-chip-list> -->
                     <a [routerLink]="['/products', product._id, product.titre]" class="image-link">
-                        <img src="http://localhost:3000/{{product.images}}" alt="">
+                        <img src="{{ baseUrl + '/' + product.images}}" alt="">
                     </a>
                     <h4 class="category text-muted">{{ ( appService.Data.categories | filterById : product.categoryId )?.name }}</h4>                                                                     
                     <a [routerLink]="['/products', product._id, product.titre]" class="title text-truncate">
@@ -173,7 +173,7 @@
                                 <!-- <mat-chip color="warn" selected="true">{{product.discount}}% OFF</mat-chip> -->
                             <!-- </mat-chip-list> -->
                             <a [routerLink]="['/products', product._id, product.titre]" class="image-link">
-                                <img src="http://localhost:3000/product.images" alt="">
+                                <img src="{{baseUrl + '/' + product.images}}" alt="">
                             </a>
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="60" class="p-2">
