@@ -20,7 +20,7 @@ export class ConfirmationDialogComponent {
     langue:new FormControl(this.data.langue,[Validators.required]),
     stock:new FormControl(this.data.stock,[Validators.required]),
     prix:new FormControl(this.data.prix,[Validators.required]),
-    etat:new FormControl(this.data.etat,[Validators.required])
+    type:new FormControl(this.data.type,[Validators.required])
   })
   LivreUpdated=new FormGroup({
     titre:new FormControl(),
@@ -31,7 +31,7 @@ export class ConfirmationDialogComponent {
     langue:new FormControl(),
     stock:new FormControl(),
     prix:new FormControl(),
-    etat:new FormControl()
+    type:new FormControl()
   })
   category:any;
   UploadFiles:File[]=[];
@@ -43,11 +43,8 @@ export class ConfirmationDialogComponent {
     
       }
       ngOnInit() {
-    this.category=this.data.categorie
     
-       
-       
-      }
+  }
 
       onSelect(event){
         this.UploadFiles.push(...event.addedFiles)
@@ -64,19 +61,16 @@ export class ConfirmationDialogComponent {
       langue:new FormControl(livre.langue),
       stock:new FormControl(livre.stock),
       prix:new FormControl(livre.prix),
-      etat:new FormControl(livre.etat)
+      type:new FormControl(livre.type)
 
      })
         }
-  onConfirmClick() {
+  onConfirmClick():void {
     var UpdatedData=this.Livre.value
-    console.log(UpdatedData);
     
     var   formData :FormData= new FormData()
   
   formData.set("titre",UpdatedData.titre  );
-  
-  
   formData.set('auteur', UpdatedData.auteur);
   formData.set('categorie', UpdatedData.categorie) ;  
   formData.set('maisonEdition', UpdatedData.maisonEdition)  ;
@@ -84,21 +78,28 @@ export class ConfirmationDialogComponent {
   formData.set('langue',UpdatedData.langue);
   formData.set('stock',UpdatedData.stock) ;
   formData.set('prix',UpdatedData.prix);
-  formData.set('etat',UpdatedData.etat);
+  formData.set('type',UpdatedData.type);
   
   // Append uploaded image to formdata
-  let fileLenght=this.UploadFiles.length;
-  if(fileLenght>0){
-  for(let i=0;i<fileLenght;i++){
-   formData.append('images',this.UploadFiles[i])
+  for(let i=0;i<this.UploadFiles.length;i++){
+  if(this.UploadFiles.length>0){
+    formData.set('images',this.UploadFiles[i])
   }
+  else if(this.UploadFiles.length<=0){
+    formData.set('images',this.data.images)
   }
   
-  this.LivresService.UpdateLivre(formData,this.data.id).subscribe(res=>{console.log(res),()=>{},()=>{};
+}
+  
+  
+  
+  this.LivresService.UpdateLivre(formData,this.data.id).subscribe(res=>{console.log(res),err=>{},()=>{ 
+
+  };
   })
 
+  this.dialogRef.close(true);
   
-    this.dialogRef.close(true);
   }
 
 }

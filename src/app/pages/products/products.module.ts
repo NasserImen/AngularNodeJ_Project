@@ -12,8 +12,8 @@ import { ProductZoomComponent } from './product/product-zoom/product-zoom.compon
 
 export const routes = [
   { path: '', component: ProductsComponent, pathMatch: 'full' },
-  { path: ':name', component: ProductsComponent },
-  { path: ':id/:name', component: ProductComponent }
+  { path: ':titre', component: ProductsComponent },
+  { path: ':_id/:titre', component: ProductComponent }
 ];
 
 @NgModule({

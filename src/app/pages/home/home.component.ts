@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../../app.service';
 import { Product } from "../../app.models";
+import { Livre } from 'src/app/back-office/admin/Models/LivreModel';
 
 @Component({
   selector: 'app-home',
@@ -19,56 +20,56 @@ export class HomeComponent implements OnInit {
 
   public brands = [];
   public banners = [];
-  public featuredProducts: Array<Product>;
-  public onSaleProducts: Array<Product>;
-  public topRatedProducts: Array<Product>;
-  public newArrivalsProducts: Array<Product>;
+  public featuredProducts: Array<Livre>;
+  public onSaleProducts: Array<Livre>;
+  public topRatedProducts: Array<Livre>;
+  public newArrivalsProducts: Array<Livre>;
 
 
   constructor(public appService:AppService) { }
 
   ngOnInit() {
-    this.getBanners();
-    this.getProducts("featured");
-    this.getBrands();
+    // this.getBanners();
+    this.getProducts();
+    // this.getBrands();
   }
 
   public onLinkClick(e){
-    this.getProducts(e.tab.textLabel.toLowerCase()); 
+    this.getProducts(); 
   }
 
-  public getProducts(type){
-    if(type == "featured" && !this.featuredProducts){
-      this.appService.getProducts("featured").subscribe(data=>{
-        this.featuredProducts = data;      
-      }) 
-    }
-    if(type == "on sale" && !this.onSaleProducts){
-      this.appService.getProducts("on-sale").subscribe(data=>{
-        this.onSaleProducts = data;      
-      })
-    }
-    if(type == "top rated" && !this.topRatedProducts){
-      this.appService.getProducts("top-rated").subscribe(data=>{
-        this.topRatedProducts = data;      
-      })
-    }
-    if(type == "new arrivals" && !this.newArrivalsProducts){
-      this.appService.getProducts("new-arrivals").subscribe(data=>{
-        this.newArrivalsProducts = data;      
-      })
-    }
+  public getProducts(){
+    // if(type == "featured" && !this.featuredProducts){
+    //   this.appService.getProducts("featured").subscribe(data=>{
+    //     this.featuredProducts = data;      
+    //   }) 
+    // }
+    // if(type == "on sale" && !this.onSaleProducts){
+    //   this.appService.getProducts("on-sale").subscribe(data=>{
+    //     this.onSaleProducts = data;      
+    //   })
+    // }
+    // if(type == "top rated" && !this.topRatedProducts){
+    //   this.appService.getProducts("top-rated").subscribe(data=>{
+    //     this.topRatedProducts = data;      
+    //   })
+    // }
+    // if(type == "new arrivals" && !this.newArrivalsProducts){
+    //   this.appService.getProducts("new-arrivals").subscribe(data=>{
+    //     this.newArrivalsProducts = data;      
+    //   })
+    // }
    
   }
 
-  public getBanners(){
-    this.appService.getBanners().subscribe(data=>{
-      this.banners = data;
-    })
-  }
+  // public getBanners(){
+  //   this.appService.getBanners().subscribe(data=>{
+  //     this.banners = data;
+  //   })
+  // }
 
-  public getBrands(){
-    this.brands = this.appService.getBrands();
-  }
+  // public getBrands(){
+  //   this.brands = this.appService.getBrands();
+  // }
 
 }

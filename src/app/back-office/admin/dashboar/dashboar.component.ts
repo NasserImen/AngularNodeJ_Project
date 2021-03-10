@@ -21,7 +21,7 @@ export class DashboarComponent implements OnInit {
  categorie:string
  stock:number;
  prix:number;
- etat:string
+ type:string
  images:string;
  langue:string
  id:any;
@@ -42,7 +42,7 @@ export class DashboarComponent implements OnInit {
         anneeEdition:value,
         categorie:value,
         stock:value,
-        etat:value,
+        type:value,
         prix:value,
         images:value,
         langue:value,
@@ -62,7 +62,8 @@ export class DashboarComponent implements OnInit {
   }
   DeleteLivre(id){
     
-     this.LivresService.DeleteLivre(id).subscribe(res=>{console.log(res),()=>{},()=>{}; })
+     this.LivresService.DeleteLivre(id).subscribe(()=>{this.ngOnInit()
+     })
   }
   UpdateBook(i){
     this.titre=this.ListLivres[i].titre
@@ -71,15 +72,15 @@ export class DashboarComponent implements OnInit {
     this.anneeEdition=this.ListLivres[i].anneeEdition
     this.categorie=this.ListLivres[i].categorie
     this.stock=this.ListLivres[i].stock
-    this.etat=this.ListLivres[i].etat
+    this.type=this.ListLivres[i].type
     this.prix=this.ListLivres[i].prix
     this.images=this.ListLivres[i].images
     this.langue=this.ListLivres[i].langue
      this.id=this.ListLivres[i]._id
 
     const dialogRef = this.dialog.open(ConfirmationDialogComponent,{
-      width: '650px',
-      height: '400px',
+      width: '850px',
+      height: '600px',
       data:{
         titre:this.titre,
         auteur:this.auteur,
@@ -87,7 +88,7 @@ export class DashboarComponent implements OnInit {
         anneeEdition:this.anneeEdition,
         categorie:this.categorie,
         stock:this.stock,
-        etat:this.etat,
+        type:this.type,
         prix:this.prix,
         images:this.images,
         langue:this.langue,
@@ -104,10 +105,14 @@ export class DashboarComponent implements OnInit {
         a.click();
         a.remove();
         snack.dismiss();
-        this.snackBar.open('book updated succusfuly', 'Fechar', {
+        this.snackBar.open('book updated succusfuly', '', {
           duration: 2000,
         });
       }
+      else{
+        snack.dismiss()
+      }
+      this.ngOnInit()
     });
   }
 }
