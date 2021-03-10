@@ -38,7 +38,7 @@ export class AppService {
         return this.http.get<Livre[]>(this.url+"/Livres/Livres");
     }
 
-    // public getProductById(id): Observable<Product>{
+    // public getProductById(id): Observable<Prng serveoduct>{
     //     return this.http.get<Product>(this.url + 'product-' + id + '.json');
     // }
 

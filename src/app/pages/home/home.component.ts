@@ -39,11 +39,10 @@ export class HomeComponent implements OnInit {
   }
 
   public getProducts(){
-    // if(type == "featured" && !this.featuredProducts){
-    //   this.appService.getProducts("featured").subscribe(data=>{
-    //     this.featuredProducts = data;      
-    //   }) 
-    // }
+      this.appService.getProducts().subscribe(res=>{
+        this.featuredProducts = res;      
+      }) 
+    }
     // if(type == "on sale" && !this.onSaleProducts){
     //   this.appService.getProducts("on-sale").subscribe(data=>{
     //     this.onSaleProducts = data;      
@@ -72,4 +71,4 @@ export class HomeComponent implements OnInit {
   //   this.brands = this.appService.getBrands();
   // }
 
-}
+
