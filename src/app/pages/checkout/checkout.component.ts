@@ -24,7 +24,7 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit() {    
     this.appService.Data.cartList.forEach(product=>{
-      this.grandTotal += product.cartCount*product.newPrice;
+      this.grandTotal += product.cardCount*product.prix;
     });
     this.countries = this.appService.getCountries();
     this.months = this.appService.getMonths();

@@ -4,6 +4,7 @@ import { Settings, AppSettings } from '../app.settings';
 import { AppService } from '../app.service';
 import { Category, Product } from '../app.models';
 import { SidenavMenuService } from '../theme/components/sidenav-menu/sidenav-menu.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-pages',
@@ -25,6 +26,7 @@ export class PagesComponent implements OnInit {
               public router:Router) { 
     this.settings = this.appSettings.settings; 
   }
+  baseUrl=environment.baseURL;
 
   ngOnInit() {
     // this.getCategories();
@@ -52,8 +54,8 @@ export class PagesComponent implements OnInit {
       const index: number = this.appService.Data.cartList.indexOf(product);
       if (index !== -1) {
           this.appService.Data.cartList.splice(index, 1);
-          this.appService.Data.totalPrice = this.appService.Data.totalPrice - product.newPrice*product.cartCount;
-          this.appService.Data.totalCartCount = this.appService.Data.totalCartCount - product.cartCount;
+          this.appService.Data.totalPrice = this.appService.Data.totalPrice - product.prix*product.cardCount;
+          this.appService.Data.totalCartCount = this.appService.Data.totalCartCount - product.cardCount;
           this.appService.resetProductCartCount(product);
       }        
   }
