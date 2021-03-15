@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, ViewChild } from '@angular/core'; 
+import { Component, OnInit, HostListener, ViewChild, Input } from '@angular/core'; 
 import { Router, NavigationEnd } from '@angular/router';
 import { Settings, AppSettings } from '../app.settings';
 import { AppService } from '../app.service';
@@ -17,6 +17,8 @@ export class PagesComponent implements OnInit {
   public categories:Category[];
   public category:Category;
   public sidenavMenuItems:Array<any>;
+
+
   @ViewChild('sidenav', { static: true }) sidenav:any;
 
   public settings: Settings;
@@ -31,6 +33,7 @@ export class PagesComponent implements OnInit {
   ngOnInit() {
     // this.getCategories();
     this.sidenavMenuItems = this.sidenavMenuService.getSidenavMenuItems();
+
   } 
 
   // public getCategories(){    
@@ -51,6 +54,7 @@ export class PagesComponent implements OnInit {
   }
 
   public remove(product) {
+
       const index: number = this.appService.Data.cartList.indexOf(product);
       if (index !== -1) {
           this.appService.Data.cartList.splice(index, 1);
@@ -117,4 +121,6 @@ export class PagesComponent implements OnInit {
     }    
   }
 
+
+  
 }

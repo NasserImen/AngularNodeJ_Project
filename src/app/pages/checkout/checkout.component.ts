@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material';
+import { environment } from 'src/environments/environment';
 import { Data, AppService } from '../../app.service';
 
 @Component({
@@ -19,6 +20,7 @@ export class CheckoutComponent implements OnInit {
   years = [];
   deliveryMethods = [];
   grandTotal = 0;
+  baseUrl=environment.baseURL;
 
   constructor(public appService:AppService, public formBuilder: FormBuilder) { }
 

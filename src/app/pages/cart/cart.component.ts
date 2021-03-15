@@ -13,6 +13,8 @@ export class CartComponent implements OnInit {
   grandTotal = 0;
   cartItemCount = [];
   cartItemCountTotal = 0;
+  clickRemove:boolean=false;
+  count=0;
   baseUrl=environment.baseURL;
   constructor(public appService:AppService) { }
 
@@ -22,6 +24,7 @@ export class CartComponent implements OnInit {
       this.grandTotal += product.cardCount*product.prix;
       this.cartItemCount[product.titre] = product.cardCount;
       this.cartItemCountTotal += product.cardCount;
+
     })
   }
 
@@ -33,55 +36,33 @@ export class CartComponent implements OnInit {
       this.total[value.productTitre] = value.total;
       this.cartItemCount[value.productTitre] = value.soldQuantity;
       this.grandTotal=0
+      this.cartItemCountTotal=0;
       this.appService.Data.cartList.forEach(product => {
         
         this.grandTotal+=this.total[product.titre];
-        
+        product.cardCount=this.cartItemCount[product.titre]
+
+      this.cartItemCountTotal+=product.cardCount
+             this.appService.Data.totalPrice=this.grandTotal
       });
 
-      // this.appService.Data.cartList.forEach(product=>{
-      // //  this.total[product.titre] = product.cardCount*product.prix;
-      
-      //   this.grandTotal += x*product.prix;
-      //   // this.cartItemCount[product.titre] = product.cardCount;
-      //   // this.cartItemCountTotal += product.cardCount;
-      // })
-      // this.total.forEach(price=>{
-      //   this.grandTotal += price;
-      // });
-      // this.cartItemCountTotal = 0;
-      // this.cartItemCount.forEach(count=>{
-      //   this.cartItemCountTotal +=count;
-      // });
      
-      // this.appService.Data.totalPrice = this.grandTotal;
-      // this.appService.Data.totalCartCount = this.cartItemCountTotal;
-      //  console.log(this.appService.Data.cartList);
-       
-      //  console.log(this.cartItemCount);
-        
-
-      // this.appService.Data.cartList.forEach(product=>{
-        
-      //   this.cartItemCount.forEach((count,index)=>{
-      //     console.log(count.ti);
-      //     if(count.titre == product.titre){
-        
-            
-      //       product.cardCount = count;
-      //     }
-
-      //   });
-
-      // });
       
+
+      this.appService.Data.totalCartCount = this.cartItemCountTotal
+      
+
+    
       
     }
+
   }
 
   public remove(product) {
+
     const index: number = this.appService.Data.cartList.indexOf(product);
     if (index !== -1) {
+
       this.appService.Data.cartList.splice(index, 1);
       this.grandTotal = this.grandTotal - this.total[product.titre]; 
       this.appService.Data.totalPrice = this.grandTotal;       
@@ -90,7 +71,7 @@ export class CartComponent implements OnInit {
           this.total[product.titre] = 0;
         }
       });
-
+ 
       this.cartItemCountTotal = this.cartItemCountTotal - this.cartItemCount[product.titre]; 
       this.appService.Data.totalCartCount = this.cartItemCountTotal;
       this.cartItemCount.forEach(val=>{
@@ -99,7 +80,7 @@ export class CartComponent implements OnInit {
         }
       });
       this.appService.resetProductCartCount(product);
-    }     
+    }  
   }
 
   public clear(){
