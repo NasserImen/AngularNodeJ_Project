@@ -81,8 +81,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "emporium:build",
-            "proxyConfig": "proxy.conf.json"
+            "browserTarget": "emporium:build"
           },
           "configurations": {
             "production": {
