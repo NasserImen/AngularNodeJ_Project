@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material';
+import { environment } from 'src/environments/environment';
 import { Data, AppService } from '../../app.service';
 
 @Component({
@@ -19,12 +20,13 @@ export class CheckoutComponent implements OnInit {
   years = [];
   deliveryMethods = [];
   grandTotal = 0;
+  baseUrl=environment.baseURL;
 
   constructor(public appService:AppService, public formBuilder: FormBuilder) { }
 
   ngOnInit() {    
     this.appService.Data.cartList.forEach(product=>{
-      this.grandTotal += product.cartCount*product.newPrice;
+      this.grandTotal += product.cardCount*product.prix;
     });
     this.countries = this.appService.getCountries();
     this.months = this.appService.getMonths();
@@ -56,11 +58,40 @@ export class CheckoutComponent implements OnInit {
   }
 
   public placeOrder(){
+    
     this.horizontalStepper._steps.forEach(step => step.editable = false);
     this.verticalStepper._steps.forEach(step => step.editable = false);
-    this.appService.Data.cartList.length = 0;    
-    this.appService.Data.totalPrice = 0;
-    this.appService.Data.totalCartCount = 0;
+    this.appService.Data.cartList.forEach(product=>{
+      this.appService.Data.totalCartCount+=product.cardCount
+      this.appService.Data.totalPrice = this.grandTotal;
+     
+       
+       
+    }) 
+    // this.appService.Data.cartList.length = 0;    
+ 
+    console.log(this.deliveryForm.controls.deliveryMethod.value.name);
+    console.log(this.paymentForm.controls.cardNumber.value);
+    
+    
+    var commande ={
+      products : this.appService.Data.cartList,
+      total : this.appService.Data.totalPrice,
+       DeliveryMethod:this.deliveryForm.controls.deliveryMethod.value.name,
+       CardNumber:this.paymentForm.controls.cardNumber.value
+     // userId : 1
+    }
+
+    this.appService.addOrder(commande).subscribe(()=>{
+      this.appService.Data.cartList.forEach(e=>{
+        e.cardCount=1
+      })
+      this.appService.Data.cartList=[]
+      this.appService.Data.totalPrice=0
+      this.appService.Data.totalCartCount=0;
+    })
+   
+    
 
   }
 

@@ -1,5 +1,6 @@
 export class Livre{
-    _id : number
+
+    _id:number;
     titre:string;
     auteur:string;
     maisonEdition:string;
@@ -10,6 +11,7 @@ export class Livre{
     stock:number;
     prix:number;
     type:string;
+    cardCount:number
     constructor(titre:string){
     this.titre = titre
     }

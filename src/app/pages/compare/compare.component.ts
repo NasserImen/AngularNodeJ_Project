@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { Data, AppService } from '../../app.service';
 import { Product } from '../../app.models';
+import { Livre } from 'src/app/back-office/admin/Models/LivreModel';
 
 @Component({
   selector: 'app-compare',
@@ -15,14 +16,14 @@ export class CompareComponent implements OnInit {
   ngOnInit() { 
     this.appService.Data.cartList.forEach(cartProduct=>{
       this.appService.Data.compareList.forEach(product=>{
-        if(cartProduct.id == product.id){
-          product.cartCount = cartProduct.cartCount;
+        if(cartProduct.titre == product.titre){
+          product.cardCount = cartProduct.cardCount;
         }
       });
     });
   }
 
-  public remove(product:Product) {
+  public remove(product:Livre) {
       const index: number = this.appService.Data.compareList.indexOf(product);
       if (index !== -1) {
           this.appService.Data.compareList.splice(index, 1);
@@ -33,14 +34,14 @@ export class CompareComponent implements OnInit {
     this.appService.Data.compareList.length = 0;
   }
 
-  public addToCart(product:Product){
-    product.cartCount = product.cartCount + 1;
-    if(product.cartCount <= product.availibilityCount){
+  public addToCart(product:Livre){
+    product.cardCount = product.cardCount + 1;
+    if(product.cardCount <= product.stock){
       this.appService.addToCart(product);
     }
     else{
-      product.cartCount = product.availibilityCount;
-      this.snackBar.open('You can not add more items than available. In stock ' + product.availibilityCount + ' items and you already added ' + product.cartCount + ' item to your cart', '×', { panelClass: 'error', verticalPosition: 'top', duration: 5000 });
+      product.cardCount = product.stock;
+      this.snackBar.open('You can not add more items than available. In stock ' + product.stock + ' items and you already added ' + product.cardCount + ' item to your cart', '×', { panelClass: 'error', verticalPosition: 'top', duration: 5000 });
     }
   }
 
