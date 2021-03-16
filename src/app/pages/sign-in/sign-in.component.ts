@@ -57,8 +57,12 @@ export class SignInComponent implements OnInit {
       else{
        localStorage.setItem("token", res.token);
        localStorage.setItem("userconnected",this.loginForm.value.email);
-       this.us.isLoginSubject.next(true)
+       this.us.isLoginSubject.next(true);
+       if(this.user.email=="sofiene@gmail.com" || this.user.email=="nasserimen@gmail.com" || this.user.email=="js.wafa@gmail.com"){
+         this.router.navigate(['/admin/dashboard'])
+       }else{
        this.router.navigate(['/']);
+      }
      }
    },
   err=>{},

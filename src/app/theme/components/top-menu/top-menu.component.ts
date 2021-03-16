@@ -3,6 +3,7 @@ import { Data, AppService } from '../../../app.service';
 import { Settings, AppSettings } from '../../../app.settings';
 import { BehaviorSubject, Observable } from "rxjs";
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-top-menu',
   templateUrl: './top-menu.component.html'
@@ -25,7 +26,8 @@ export class TopMenuComponent implements OnInit {
   public flag:any;
 
   public settings: Settings;
-  constructor(public appSettings:AppSettings, public appService:AppService, private authService: AuthService) { 
+  us: any;
+  constructor(public appSettings:AppSettings, public appService:AppService, private authService: AuthService, private router:Router) { 
     this.settings = this.appSettings.settings; 
    
   } 
@@ -55,6 +57,10 @@ export class TopMenuComponent implements OnInit {
     this.flag = flag;
   }
 
- 
+ public signout(){
+   localStorage.removeItem("userconnected");
+   localStorage.removeItem("token");
+   this.authService.isLoginSubject.next(false);
+ }
 
 }

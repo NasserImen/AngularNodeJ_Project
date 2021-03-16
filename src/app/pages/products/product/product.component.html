@@ -3,10 +3,10 @@
         
         <mat-card class="product-image">
             <mat-chip-list *ngIf="product?.discount">
-                <mat-chip color="warn" selected="true">{{product?.discount}}% OFF</mat-chip>
+                <mat-chip color="warn" selected="true">{{product?.prix}}% OFF</mat-chip>
             </mat-chip-list>
             <button mat-icon-button (click)="openZoomViewer()" fxHide="false" fxHide.gt-md><mat-icon>fullscreen</mat-icon></button>
-            <img *ngIf="image" [src]="image" (mousemove)="onMouseMove($event)" (mouseleave)="onMouseLeave($event)"/>
+            <img  src="{{ baseUrl+ '/' + product?.images}}" width="400px" height="400px" (mousemove)="onMouseMove($event)" (mouseleave)="onMouseLeave($event)">
         </mat-card>       
 
         <div class="small-carousel"> 
@@ -31,21 +31,26 @@
         <div #zoomViewer fxShow="false" fxShow.gt-md>
             <mat-card *ngIf="zoomImage" class="zoom-viewer mat-elevation-z18" [ngStyle]="{'background-image': 'url(' + zoomImage + ')'}"></mat-card>
         </div>
-
-        <h2>{{product?.name}}</h2>
+        <h2>Titre:{{product?.titre}}</h2>
         <div class="py-1 lh">
-            <p><span class="text-muted fw-500">Category: </span><span>{{ ( appService.Data.categories | filterById : product?.categoryId )?.name }}</span></p>
-            <p><span class="text-muted fw-500">Availibility: </span><span>{{ (product?.availibilityCount > 0) ? 'In stock':'Unavailable'}}</span></p>
+            <p><span class="text-muted fw-500">Category: </span><span>{{product?.categorie}}</span></p>
+            <p><span class="text-muted fw-500">MaisonEdition: </span><span>{{product?.maisonEdition}}</span></p>
+            <p><span class="text-muted fw-500">Auteur: </span><span>{{product?.auteur}}</span></p>
+            <p><span class="text-muted fw-500">Availibility: </span><span>{{availibility}}</span></p>
+            <!-- <p class="py-1 text-muted lh">Auteur:{{product?.auteur}}</p> -->
+            <!-- <p class="py-1 text-muted lh">Availibility:{{availibility}}</p> -->
+            <!-- <p><span class="text-muted fw-500">Category: </span><span>{{ ( appService.Data.categories | filterById : product?.categoryId )?.name }}</span></p> -->
+            <!-- <p><span class="text-muted fw-500">Availibility: </span><span>{{ (product?.availibilityCount > 0) ? 'In stock':'Unavailable'}}</span></p> -->
         </div>                 
         <div class="py-1">
             <app-rating [ratingsCount]="product?.ratingsCount" [ratingsValue]="product?.ratingsValue" [direction]="'row'"></app-rating>
         </div>
-        <p class="py-1 text-muted lh">{{product?.description}}</p>
+        
 
         <div class="divider mt-1"></div>
         <div class="py-2">
             <h3 class="old-price text-muted"><span *ngIf="product?.oldPrice">${{product?.oldPrice | number : '1.2-2'}}</span></h3>
-            <h2 class="new-price">${{product?.newPrice}}</h2>
+            <h2 class="new-price">${{product?.prix}}</h2>
         </div>        
 
         <!-- <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="details text-muted py-1">
@@ -71,10 +76,10 @@
         </div>
 
     </div>
-    <div fxFlex="100" fxFlex.gt-md="20" fxHide fxShow.gt-md> 
+    <div fxFlex="100" fxFlex.gt-md="50" fxHide fxShow.gt-md> 
 
         <div fxLayout="row wrap" class="info-bar" ngClass.gt-md="m-0">
-            <div fxFlex="100" fxFlex.md="25" fxFlex.sm="50">
+            <div fxFlex="100" fxFlex.md="25" fxFlex.sm="50" class="mt-16">
                 <mat-card class="light-block" fxLayout="row"  fxLayoutAlign="start center">
                     <mat-icon class="mat-icon-xlg text-muted m-0">card_giftcard</mat-icon>
                     <div class="content">
@@ -101,6 +106,7 @@
                     </div> 
                 </mat-card>
             </div>
+           
             <div fxFlex="100" fxFlex.md="25" fxFlex.sm="50" class="mt-16"> 
                 <mat-card class="light-block" fxLayout="row"  fxLayoutAlign="start center">
                     <mat-icon class="mat-icon-xlg text-muted m-0">history</mat-icon>
@@ -110,15 +116,19 @@
                     </div> 
                 </mat-card>
             </div>
+        
         </div>
 
     </div>
+
+
+<!-- ---------------- -->
 </div>
 
 <div fxLayout="row wrap" class="mt-2">
     <div fxFlex="100" fxFlex.gt-md="78" fxFlex.md="74">
         <mat-card> 
-            <mat-tab-group [@.disabled]="true" [selsectedIndex]="0">       
+            <mat-tab-group [@.disabled]="true" [selectedIndex]="0">       
                 <mat-tab label="Description">
                     <div class="full-desc lh">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris id nulla metus. Maecenas commodo turpis dui, porttitor tincidunt enim mollis a. Curabitur eu velit mi. Nullam congue turpis id metus sollicitudin, id cursus nulla laoreet. Proin commodo eu felis at malesuada. Nulla ac facilisis justo, eget vulputate ex. Nulla nec laoreet nulla. Cras auctor leo at diam congue, quis convallis urna pulvinar. Nunc ut mi nulla. Nunc ligula massa, vulputate sed scelerisque sit amet, dapibus semper est. Sed sed blandit turpis. Vestibulum id porttitor ligula, at iaculis ligula. Pellentesque vel tellus sit amet mauris aliquet bibendum id et lorem.</p>

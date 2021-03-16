@@ -8,6 +8,7 @@ import { Product } from "../../../app.models";
 import { emailValidator } from '../../../theme/utils/app-validators';
 import { ProductZoomComponent } from './product-zoom/product-zoom.component';
 import { Livre } from 'src/app/back-office/admin/Models/LivreModel';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product',
@@ -18,20 +19,25 @@ export class ProductComponent implements OnInit {
   @ViewChild('zoomViewer', { static: true }) zoomViewer;
   @ViewChild(SwiperDirective, { static: true }) directiveRef: SwiperDirective;
   public config: SwiperConfigInterface={};
-  public product: Livre;
+  public product: any;
   public image: any;
   public zoomImage: any;
   private sub: any;
   public form: FormGroup;
   public relatedProducts: Array<Livre>;
-
+  bookId: string
+  productId: string
+  stock:number
+  availibility="Availabl"
   constructor(public appService:AppService, private activatedRoute: ActivatedRoute, public dialog: MatDialog, public formBuilder: FormBuilder ) {  }
 result : any
 books =[]
+baseUrl=environment.baseURL;
   ngOnInit() {      
-    // this.sub = this.activatedRoute.params.subscribe(params => { 
-    //   this.getProductById(params['id']); 
-    // }); 
+   this.productId= this.activatedRoute.snapshot.paramMap.get("_id")
+      
+    this.getProductById(this.productId)
+    
     this.form = this.formBuilder.group({ 
       'review': [null, Validators.required],            
       'name': [null, Validators.compose([Validators.required, Validators.minLength(4)])],
@@ -62,17 +68,21 @@ books =[]
     }
   }
 
-  // public getProductById(id){
-  //   this.appService.getProductById(id).subscribe(data=>{
-  //     this.product = data;
-  //     this.image = data.images[0].medium;
-  //     this.zoomImage = data.images[0].big;
-  //     setTimeout(() => { 
-  //       this.config.observer = true;
-  //      // this.directiveRef.setIndex(0);
-  //     });
-  //   });
-  // }
+  public getProductById(id){  
+    this.appService.getProductById(id).subscribe(data=>{
+      this.product = data;
+      this.stock = data.stock
+      if(this.stock!==null){
+      this.availibility="Unavailable"
+    }
+    },err=>{
+      console.log(err);
+      
+    }, ()=>{
+     console.log( this.product);
+     
+    });
+  }
 
   public getRelatedProducts(){
     this.appService.getProducts().subscribe(data => {

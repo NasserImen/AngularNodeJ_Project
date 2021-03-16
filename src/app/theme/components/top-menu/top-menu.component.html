@@ -66,9 +66,10 @@
                 <span>Help</span> 
             </a>
             <div class="divider"></div>
-            <a mat-menu-item routerLink="/sign-in"> 
+            <a mat-menu-item routerLink="/"> 
                 <mat-icon class="mat-icon-sm">power_settings_new</mat-icon>
-                <span>Sign Out</span> 
+                <!-- <span>Sign Out</span>  -->
+                <button (click)="signout()">Sign out</button>
             </a>
         </span>
     </mat-menu>    

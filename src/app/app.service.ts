@@ -38,9 +38,9 @@ export class AppService {
         return this.http.get<Livre[]>(this.url+"/Livres/Livres");
     }
 
-    // public getProductById(id): Observable<Prng serveoduct>{
-    //     return this.http.get<Product>(this.url + 'product-' + id + '.json');
-    // }
+    public getProductById(id): Observable<Livre>{
+        return this.http.get<Livre>(this.url +'/Livres/Livres/' + id);
+    }
 
     // public getBanners(): Observable<any[]>{
     //     return this.http.get<any[]>(this.url + 'banners.json');
