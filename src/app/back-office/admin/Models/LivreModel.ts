@@ -1,4 +1,5 @@
 export class Livre{
+
     _id:number;
     titre:string;
     auteur:string;
@@ -12,6 +13,6 @@ export class Livre{
     type:string;
     cardCount:number
     constructor(titre:string){
-        this.titre = titre
+    this.titre = titre
     }
 };

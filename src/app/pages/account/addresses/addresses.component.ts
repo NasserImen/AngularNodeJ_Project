@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, PatternValidator, Validators } from '@angular/forms';
 import { AppService } from '../../../app.service';
+import { emailValidator } from 'src/app/theme/utils/app-validators';
 
 @Component({
   selector: 'app-addresses',
@@ -21,8 +22,8 @@ export class AddressesComponent implements OnInit {
       'lastName': ['', Validators.required],
       'middleName': '',
       'company': '',
-      'email': ['', Validators.required],
-      'phone': ['', Validators.required],
+      'email': ['', Validators.compose([Validators.required, emailValidator  ])],
+      'phone': [0, [Validators.required,Validators.minLength(8)],Validators.pattern[0-9]],
       'country': ['', Validators.required],
       'city': ['', Validators.required],
       'state': '',
