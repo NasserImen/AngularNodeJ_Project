@@ -70,16 +70,14 @@ export class CheckoutComponent implements OnInit {
     }) 
     // this.appService.Data.cartList.length = 0;    
  
-    console.log(this.deliveryForm.controls.deliveryMethod.value.name);
-    console.log(this.paymentForm.controls.cardNumber.value);
-    
+   
     
     var commande ={
       products : this.appService.Data.cartList,
       total : this.appService.Data.totalPrice,
        DeliveryMethod:this.deliveryForm.controls.deliveryMethod.value.name,
-       CardNumber:this.paymentForm.controls.cardNumber.value
-     // userId : 1
+       CardNumber:this.paymentForm.controls.cardNumber.value,
+       userId : localStorage.getItem('userId')
     }
 
     this.appService.addOrder(commande).subscribe(()=>{

@@ -60,6 +60,7 @@ export class TopMenuComponent implements OnInit {
  public signout(){
    localStorage.removeItem("userconnected");
    localStorage.removeItem("token");
+   localStorage.removeItem("userId")
    this.authService.isLoginSubject.next(false);
  }
 
