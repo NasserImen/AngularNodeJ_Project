@@ -168,11 +168,11 @@
             <div class="mat-header-cell">Total</div>
           </div>
           <div *ngFor="let product of appService.Data.cartList" class="mat-row">
-            <div class="mat-cell"><img [src]="product.images[0].small"></div>
-            <div class="mat-cell">{{product.name}}</div>
-            <div class="mat-cell">${{product.newPrice | number : '1.2-2'}}</div>      
-            <div class="mat-cell text-muted"> {{product.cartCount}} </div>
-            <div class="mat-cell">${{ (product.newPrice*product.cartCount) | number : '1.2-2'}}</div>
+            <div class="mat-cell"><img src="{{ baseUrl + '/' + product.images}}"></div>
+            <div class="mat-cell">{{product.titre}}</div>
+            <div class="mat-cell">${{product.prix | number : '1.2-2'}}</div>      
+            <div class="mat-cell text-muted"> {{product.cardCount}} </div>
+            <div class="mat-cell">${{ (product.prix*product.cardCount) | number : '1.2-2'}}</div>
           </div>
         </div>
       </div> 

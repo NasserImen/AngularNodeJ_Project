@@ -151,18 +151,18 @@ export class ProductsComponent implements OnInit {
     this.viewCol = viewCol;
   }
 
-  // public openProductDialog(product){   
-  //   let dialogRef = this.dialog.open(ProductDialogComponent, {
-  //       data: product,
-  //       panelClass: 'product-dialog',
-  //       direction: (this.settings.rtl) ? 'rtl' : 'ltr'
-  //   });
-  //   dialogRef.afterClosed().subscribe(product => {
-  //     if(product){
-  //       this.router.navigate(['/products', product.id, product.name]); 
-  //     }
-  //   });
-  // }
+  public openProductDialog(product){   
+    let dialogRef = this.dialog.open(ProductDialogComponent, {
+        data: product,
+        panelClass: 'product-dialog',
+        direction: (this.settings.rtl) ? 'rtl' : 'ltr'
+    });
+    dialogRef.afterClosed().subscribe(product => {
+      if(product){
+        this.router.navigate(['/products', product._id, product.titre]); 
+      }
+    });
+  }
 
   public onPageChanged(event){
       this.page = event;

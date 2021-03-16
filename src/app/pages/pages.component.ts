@@ -1,9 +1,10 @@
-import { Component, OnInit, HostListener, ViewChild } from '@angular/core'; 
+import { Component, OnInit, HostListener, ViewChild, Input } from '@angular/core'; 
 import { Router, NavigationEnd } from '@angular/router';
 import { Settings, AppSettings } from '../app.settings';
 import { AppService } from '../app.service';
 import { Category, Product } from '../app.models';
 import { SidenavMenuService } from '../theme/components/sidenav-menu/sidenav-menu.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-pages',
@@ -16,6 +17,8 @@ export class PagesComponent implements OnInit {
   public categories:Category[];
   public category:Category;
   public sidenavMenuItems:Array<any>;
+
+
   @ViewChild('sidenav', { static: true }) sidenav:any;
 
   public settings: Settings;
@@ -25,10 +28,12 @@ export class PagesComponent implements OnInit {
               public router:Router) { 
     this.settings = this.appSettings.settings; 
   }
+  baseUrl=environment.baseURL;
 
   ngOnInit() {
     // this.getCategories();
     this.sidenavMenuItems = this.sidenavMenuService.getSidenavMenuItems();
+
   } 
 
   // public getCategories(){    
@@ -49,11 +54,12 @@ export class PagesComponent implements OnInit {
   }
 
   public remove(product) {
+
       const index: number = this.appService.Data.cartList.indexOf(product);
       if (index !== -1) {
           this.appService.Data.cartList.splice(index, 1);
-          this.appService.Data.totalPrice = this.appService.Data.totalPrice - product.newPrice*product.cartCount;
-          this.appService.Data.totalCartCount = this.appService.Data.totalCartCount - product.cartCount;
+          this.appService.Data.totalPrice = this.appService.Data.totalPrice - product.prix*product.cardCount;
+          this.appService.Data.totalCartCount = this.appService.Data.totalCartCount - product.cardCount;
           this.appService.resetProductCartCount(product);
       }        
   }
@@ -115,4 +121,6 @@ export class PagesComponent implements OnInit {
     }    
   }
 
+
+  
 }
