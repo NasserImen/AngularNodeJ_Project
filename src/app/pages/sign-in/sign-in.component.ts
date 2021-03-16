@@ -6,6 +6,7 @@ import { emailValidator, matchingPasswords } from '../../theme/utils/app-validat
 import { AuthService } from 'src/app/services/auth.service';
 import {HttpClient} from '@angular/common/http'
 import { User } from 'src/app/models/user';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-sign-in',
@@ -16,7 +17,12 @@ export class SignInComponent implements OnInit {
   loginForm: FormGroup;
   registerForm: FormGroup;
   user: User;
-  constructor(public formBuilder: FormBuilder, public router:Router, public snackBar: MatSnackBar, private us:AuthService) { }
+  signin:boolean;
+  isLoginSubject
+  isLoggedIn : Observable<boolean>
+  constructor(public formBuilder: FormBuilder, public router:Router, public snackBar: MatSnackBar, private us:AuthService) { 
+ 
+  }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -32,22 +38,39 @@ export class SignInComponent implements OnInit {
     })
 
   }
-
+//   init(){
+//     this.us.isLoginSubject.subscribe({
+//         next: result => {
+          
+//             this.isLoginSubject = result
+            
+//         }
+//     });
+// }
   public onLoginFormSubmit(user):void {
    this.us.login(user).subscribe(res=>{
       this.user = res.user;
-      console.log(res);
-      
       if (!this.user) {
         this.snackBar.open('user not found','×',{panelClass: 'success', verticalPosition: 'top', duration: 3000})
+        
       }
       else{
-       localStorage.setItem("token", res.token)
+       localStorage.setItem("token", res.token);
+       localStorage.setItem("userconnected",this.loginForm.value.email);
+       this.us.isLoginSubject.next(true);
+       if(this.user.email=="sofiene@gmail.com" || this.user.email=="nasserimen@gmail.com" || this.user.email=="js.wafa@gmail.com"){
+         this.router.navigate(['/admin/dashboard'])
+       }else{
        this.router.navigate(['/']);
+      }
      }
    },
   err=>{},
-  ()=>{},
+  ()=>{
+    
+    
+    // this.us.isLoginSubject.next(true)    
+  },
   )};
 
   public onRegisterFormSubmit(user):void {    

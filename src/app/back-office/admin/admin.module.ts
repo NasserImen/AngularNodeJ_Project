@@ -14,7 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { AddCategoryComponent } from './add-category/add-category.component';
 import { ConfirmationDialogComponent } from './dashboar/confirmation-dialog.component';
-// import { ListbooksVComponent } from './listbooks-v/listbooks-v.component';
+import { ListcommandsComponent } from './listcommands/listcommands.component';
 export const routes = [
   {  
     path: 'admin', 
@@ -22,8 +22,8 @@ export const routes = [
      component: AdminComponent, children: [
          { path: 'dashboard', component: DashboarComponent },
          { path: 'addbook', component: AddbookComponent },
-         { path:'addCategory', component:AddCategoryComponent}
-        //  { path: 'listbooksV',component:ListbooksVComponent }
+         { path:'addCategory', component:AddCategoryComponent},
+         { path: 'listCommands',component:ListcommandsComponent }
        
     ]
  }
@@ -36,7 +36,8 @@ export const routes = [
     DashboarComponent,
 
     AddCategoryComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    ListcommandsComponent
 
   ],
  entryComponents:[    ConfirmationDialogComponent
