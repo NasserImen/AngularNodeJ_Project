@@ -19,7 +19,7 @@ export class AdminComponent implements OnInit {
     { name: 'Order History', href: 'orders', icon: 'add_shopping_cart' },  
     { name: 'List of commands', href: 'listCommands', icon: 'add_shopping_cart' },  
 
-    { name: 'Logout', href: '/sign-in', icon: 'power_settings_new' },
+    // { name: 'Logout', href: '/sign-in', icon: 'power_settings_new' },
     
   ];
   constructor(public router:Router) { }
@@ -43,7 +43,12 @@ export class AdminComponent implements OnInit {
       }                
     });
   }
-
+  removeAdminConnect(){
+    localStorage.removeItem('userId')
+    localStorage.removeItem('userconnected')
+    localStorage.removeItem('token')
+    this.router.navigate(['/sign-in'])
+  }
 
 
 }
