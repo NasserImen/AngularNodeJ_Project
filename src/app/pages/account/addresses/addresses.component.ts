@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup, PatternValidator, Validators } from '@angular/forms';
 import { AppService } from '../../../app.service';
 import { emailValidator } from 'src/app/theme/utils/app-validators';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-addresses',
@@ -13,7 +14,7 @@ export class AddressesComponent implements OnInit {
   billingForm: FormGroup;
   shippingForm: FormGroup;
   countries = [];
-  constructor(public appService:AppService, public formBuilder: FormBuilder, public snackBar: MatSnackBar) { }
+  constructor(private authserv:AuthService,public appService:AppService, public formBuilder: FormBuilder, public snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.countries = this.appService.getCountries();
@@ -57,4 +58,8 @@ export class AddressesComponent implements OnInit {
     }
   }
 
+  public SuitUser(){
+    this.authserv.updateUser(localStorage.getItem("userconnected")).subscribe(res=>{console.log(res);
+    })
+  }
 }

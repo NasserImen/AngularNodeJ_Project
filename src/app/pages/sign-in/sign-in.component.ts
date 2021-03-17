@@ -20,7 +20,7 @@ export class SignInComponent implements OnInit {
   signin:boolean;
   isLoginSubject
   isLoggedIn : Observable<boolean>
-  constructor(public formBuilder: FormBuilder, public router:Router, public snackBar: MatSnackBar, private us:AuthService) { 
+  constructor(public formBuilder: FormBuilder,private authService: AuthService, public router:Router, public snackBar: MatSnackBar, private us:AuthService) { 
  
   }
 
@@ -38,36 +38,42 @@ export class SignInComponent implements OnInit {
     })
 
   }
-//   init(){
-//     this.us.isLoginSubject.subscribe({
-//         next: result => {
-          
-//             this.isLoginSubject = result
-            
-//         }
-//     });
-// }
+
   public onLoginFormSubmit(user):void {
    this.us.login(user).subscribe(res=>{
+     console.log(res);
+     
       this.user = res.user;
       if (!this.user) {
         this.snackBar.open('user not found','×',{panelClass: 'success', verticalPosition: 'top', duration: 3000})
         
       }
       else{
-       localStorage.setItem("token", res.token);
-       localStorage.setItem("userconnected",this.loginForm.value.email);
-       localStorage.setItem("userId",res.userId)
+      
        this.us.isLoginSubject.next(true);
        if(this.user.email=="sofien@gmail.com" || this.user.email=="nasserimen@gmail.com" || this.user.email=="js.wafa@gmail.com"){
-         this.router.navigate(['/admin/dashboard'])
+        localStorage.setItem("token", res.token);
+        localStorage.setItem("userconnected",this.loginForm.value.email);
+        localStorage.setItem("userId",res.userId)
+        localStorage.setItem("userName",res.userName) 
+        this.router.navigate(['/admin/dashboard'])
+        
+          // const userId=localStorage.getItem('userId')
+          // this.authService.getUser(userId).subscribe(res=>{console.log(res);
+          // })
+      
        }else{
+        localStorage.setItem("token", res.token);
+        localStorage.setItem("userconnected",this.loginForm.value.email);
+        localStorage.setItem("userId",res.userId)
+        localStorage.setItem("userName",res.userName)
        this.router.navigate(['/']);
       }
      }
    },
   err=>{},
   ()=>{
+  
     
     
     // this.us.isLoginSubject.next(true)    

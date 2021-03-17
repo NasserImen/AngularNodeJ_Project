@@ -7,7 +7,6 @@ import { BackOfficeComponent } from './back-office.component';
 import { from } from 'rxjs';
 import { AddbookComponent } from './admin/addbook/addbook.component';
 
-
 export const routes = [
   { path: 'addbook', component: AddbookComponent },
   
@@ -30,6 +29,7 @@ export const routes = [
     CommonModule, 
     RouterModule.forChild(routes),
     SharedModule,
+    
     
   ]
 })
