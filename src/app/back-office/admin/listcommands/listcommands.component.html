@@ -1,23 +1,23 @@
 <div class="p-2 mt-1">
-        <h3>List of commands</h3>
+        <h3>List of orders</h3>
 </div>
 
 <div class="mat-table orders-table">
     <div class="mat-header-row">
-      <div class="mat-header-cell">Num command</div>
+      <div class="mat-header-cell">Num order</div>
       <div class="mat-header-cell">Date</div>
       <div class="mat-header-cell">Total</div>
       <div class="mat-header-cell">Status</div>
       <div class="mat-header-cell"></div>
     </div>
-    <div *ngFor="let command of ListCommands;index as i" class="mat-row">
-      <div class="mat-cell"><span class="order">{{command.num}}</span></div>
+    <div *ngFor="let command of listCommands;index as i" class="mat-row">
+      <div class="mat-cell"><span class="order">{{command.NumOrder}}</span></div>
       <div class="mat-cell">{{command.date}}</div>
-      <div class="mat-cell">{{command.total}}</div>
+      <div class="mat-cell">{{command.Total}}</div>
       <div class="mat-cell">{{command.status}}</div>     
       <div class="mat-cell"></div>
         <div class="p-1 actions">          
-          <button mat-mini-fab color="warn" matTooltip="Details" (click)='DetailCommand(command._id)'>
+          <button mat-mini-fab color="warn" matTooltip="Details" (click)='DetailCommand(command)'>
               <mat-icon>details</mat-icon>
           </button>
         </div>

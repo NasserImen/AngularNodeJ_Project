@@ -3,9 +3,13 @@
         <mat-nav-list class="mat-elevation-z1 h-100">
             <mat-list-item *ngFor="let link of links">              
                 <mat-icon matListIcon class="mat-icon-sm">{{link.icon}}</mat-icon>
-                <a matLine [routerLink]="link.href" routerLinkActive="horizontal-active-link" [routerLinkActiveOptions]="{exact:true}">{{ link.name }}</a>
+                <a matLine [routerLink]="link.href" routerLinkActive="horizontal-active-link" [routerLinkActiveOptions]="{exact:true}" type="button">{{ link.name }}</a>
+</mat-list-item>   
+<button mat-flat-button color="warn" (click)="removeAdminConnect()" class="logout"> Logout
+    <mat-icon>exit_to_app</mat-icon>
 
-            </mat-list-item>   
+</button>
+
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content class="account-content" ngClass.gt-sm="p-left">

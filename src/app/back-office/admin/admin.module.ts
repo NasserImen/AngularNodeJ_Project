@@ -15,6 +15,8 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { AddCategoryComponent } from './add-category/add-category.component';
 import { ConfirmationDialogComponent } from './dashboar/confirmation-dialog.component';
 import { ListcommandsComponent } from './listcommands/listcommands.component';
+import { ComandDetailsComponent } from './listcommands/comand-details/comand-details.component';
+// import {MatDialogModule} from '@angular/material/dialog';
 export const routes = [
   {  
     path: 'admin', 
@@ -37,10 +39,12 @@ export const routes = [
 
     AddCategoryComponent,
     ConfirmationDialogComponent,
-    ListcommandsComponent
+    ListcommandsComponent,
+    ComandDetailsComponent,
+    // MatDialogModule
 
   ],
- entryComponents:[    ConfirmationDialogComponent
+ entryComponents:[    ConfirmationDialogComponent, ComandDetailsComponent
  ],
   imports: [
     CommonModule,
