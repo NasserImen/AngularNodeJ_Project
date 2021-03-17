@@ -7,6 +7,8 @@ import { AddBooksService } from '../add-books.service';
 import { Livre } from '../Models/LivreModel';
 import { ConfirmationDialogComponent } from './confirmation-dialog.component';
 
+import { ChartOptions, ChartType, ChartDataSets } from "chart.js";
+import { Color, BaseChartDirective, Label } from "ng2-charts";
 @Component({
   selector: 'app-dashboar',
   templateUrl: './dashboar.component.html',
@@ -26,10 +28,54 @@ export class DashboarComponent implements OnInit {
  langue:string
  id:any;
 
+ public typeChart: ChartType = "pie";
+
+  public labels: Label[] = [];
+ public  data:number []=[];
+
+  public datasets: ChartDataSets[] = [
+    {
+      label: "# of Votes",
+      data:this.data,
+      backgroundColor: [
+        "rgba(255, 99, 132, 0.2)",
+        "rgba(54, 162, 235, 0.2)",
+        "rgba(255, 206, 86, 0.2)",
+        "rgba(75, 192, 192, 0.2)",
+        "rgba(153, 102, 255, 0.2)",
+        "rgba(255, 159, 64, 0.2)",
+      ],
+      borderColor: [
+        "rgba(255, 99, 132, 1)",
+        "rgba(54, 162, 235, 1)",
+        "rgba(255, 206, 86, 1)",
+        "rgba(75, 192, 192, 1)",
+        "rgba(153, 102, 255, 1)",
+        "rgba(255, 159, 64, 1)",
+      ],
+      borderWidth: 1,
+    },
+  ];
+
+  public options: ChartOptions = {
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+          },
+        },
+      ],
+    },
+  };
+
+
  ListLivres=[];
  public dialogRef:MatDialogRef<ConfirmationDialogComponent>
   constructor(private LivresService:AddBooksService,private dialog: MatDialog,
-    private snackBar: MatSnackBar ) { }
+    private snackBar: MatSnackBar ) { 
+      
+    }
    count=interval(1500);
     
 
@@ -57,7 +103,12 @@ export class DashboarComponent implements OnInit {
     
     }
     ,err=>{console.log(err);
-    },()=>{} )
+    },()=>{ this.ListLivres.forEach(e=>{
+      this.labels.push(e.titre)
+      this.data.push(e.stock)
+    }) 
+    } )
+    
     
   }
   DeleteLivre(id){

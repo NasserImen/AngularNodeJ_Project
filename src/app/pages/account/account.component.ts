@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-account',
@@ -14,9 +15,9 @@ export class AccountComponent implements OnInit {
     { name: 'Account Information', href: 'information', icon: 'info' },
     { name: 'Addresses', href: 'addresses', icon: 'location_on' },
     { name: 'Order History', href: 'orders', icon: 'add_shopping_cart' },  
-    { name: 'Logout', href: '/sign-in', icon: 'power_settings_new' },
+
   ];
-  constructor(public router:Router) { }
+  constructor(public router:Router,private authService: AuthService) { }
 
   ngOnInit() {
     if(window.innerWidth < 960){
@@ -38,5 +39,15 @@ export class AccountComponent implements OnInit {
       }                
     });
   }
+  removeAdminConnect(){
+    localStorage.removeItem('userId')
+    localStorage.removeItem('userconnected')
+    localStorage.removeItem('token')
+    localStorage.removeItem('userName')
+    this.authService.isLoginSubject.next(false);
+
+    this.router.navigate(['/sign-in'])
+  }
+
 
 }

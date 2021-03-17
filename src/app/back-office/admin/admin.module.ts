@@ -15,6 +15,10 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { AddCategoryComponent } from './add-category/add-category.component';
 import { ConfirmationDialogComponent } from './dashboar/confirmation-dialog.component';
 import { ListcommandsComponent } from './listcommands/listcommands.component';
+import { ChartsModule,ThemeService } from 'ng2-charts';
+
+
+
 export const routes = [
   {  
     path: 'admin', 
@@ -49,10 +53,13 @@ export const routes = [
     ReactiveFormsModule,
     FormsModule,
     NgxDropzoneModule,
+    ChartsModule
+
     
 
     
     
-  ]
+  ],
+  providers:[ThemeService]
 })
 export class AdminModule { }
