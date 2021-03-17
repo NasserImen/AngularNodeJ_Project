@@ -15,7 +15,7 @@ export class TopMenuComponent implements OnInit {
   public text:string;
   userConnected = false
   isLoginSubject
-
+    userName:string
   public flags = [
     { name:'English', image: 'assets/images/flags/gb.svg' },
     { name:'German', image: 'assets/images/flags/de.svg' },
@@ -43,6 +43,7 @@ export class TopMenuComponent implements OnInit {
     this.init() 
     if (localStorage.getItem("token")!= null){
       this.authService.isLoginSubject.next(true)
+     this.userName=localStorage.getItem("userName")
     }
     this.currency = this.currencies[0];
     this.flag = this.flags[0];    
@@ -61,7 +62,9 @@ export class TopMenuComponent implements OnInit {
    localStorage.removeItem("userconnected");
    localStorage.removeItem("token");
    localStorage.removeItem("userId")
+   localStorage.removeItem('userName')
    this.authService.isLoginSubject.next(false);
  }
+ 
 
 }

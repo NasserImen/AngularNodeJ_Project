@@ -8,15 +8,18 @@
       <div class="mat-header-cell">Title</div>
       <div class="mat-header-cell">Author</div>
       <div class="mat-header-cell">Current stock</div>
-      <div class="mat-header-cell">Sold quantity</div>
+      <div class="mat-header-cell"></div>
       <div class="mat-header-cell"></div>
     </div>
     <div *ngFor="let livre of ListLivres;index as i" class="mat-row">
       <div class="mat-cell"><span class="order">{{livre.titre}}</span></div>
       <div class="mat-cell">{{livre.auteur}}</div>
       <div class="mat-cell">{{livre.stock}}</div>
-      <div class="mat-cell">xxxxxx</div>     
-      <div class="mat-cell"></div>
+      <div class="mat-cell">  <span *ngIf="livre.stock>=50"class="dot"></span>
+        <span *ngIf="livre.stock<50 && livre.stock>=20"class="war"></span>
+          <span *ngIf="livre.stock<20" class="red"></span>
+
+      </div>     
         <div class="p-1 actions">          
           <button mat-mini-fab color="warn" matTooltip="Delete" (click)='DeleteLivre(livre._id)'>
               <mat-icon>delete</mat-icon>
@@ -25,30 +28,18 @@
             <mat-icon>update</mat-icon>
             </button>
         </div>
-<!-- <div class="mat-table orders-table">
-    <div class="mat-header-row">
-      <div class="mat-header-cell">Name</div>
-      <div class="mat-header-cell">Phone</div>
-      <div class="mat-header-cell">Email</div>
-      <div class="mat-header-cell">Total</div>
-      <div class="mat-header-cell"></div>
-    </div>
-    <div *ngFor="let order of orders" class="mat-row">
-      <div class="mat-cell"><span class="order">{{order.number}}</span></div>
-      <div class="mat-cell">{{order.date}}</div>
-      <div class="mat-cell">{{order.status}}</div>
-      <div class="mat-cell">{{order.total}}</div>     
-      <div class="mat-cell">
-        <div class="p-1 actions">          
-          <button mat-mini-fab color="primary" matTooltip="View">
-              <mat-icon>remove_red_eye</mat-icon>
-          </button>
-          <button *ngIf="order.invoice" mat-mini-fab color="warn" matTooltip="View invoice" class="btn-invoice">
-              <mat-icon>receipt</mat-icon>
-          </button>
-        </div>
-      </div>      
-    </div>
-  </div> -->
+
   </div>
+  <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7">
+    <div class="row">
+      <div class="container-fluid">
+        <div class="card p-4">
+          <h5 class="card-title">List of book's stock(title)</h5>
+          <canvas baseChart [datasets]="datasets" [labels]="labels" [options]="options" [chartType]="typeChart">
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  
 </div>

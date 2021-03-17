@@ -27,7 +27,11 @@ export class AuthService {
   login(user):Observable<any>{
    return this.http.post<any>(this.url + "/auth/login",user)
   }
- 
-
+ getUser(id):Observable<any>{
+   return this.http.get<any>(this.url+"/auth/User")
+ }
+updateUser(user):Observable<any>{
+  return this.http.post<any>(this.url+"/auth/userSuit",user)
+}
 }
 

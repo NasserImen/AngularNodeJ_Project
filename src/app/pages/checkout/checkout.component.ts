@@ -79,7 +79,8 @@ export class CheckoutComponent implements OnInit {
        DeliveryMethod:this.deliveryForm.controls.deliveryMethod.value.name,
        CardNumber:this.paymentForm.controls.cardNumber.value,
        userId : localStorage.getItem('userId'),
-       date : new Date()
+       date:new Date()
+       
     }
 
     this.appService.addOrder(commande).subscribe(()=>{

@@ -17,6 +17,10 @@ import { ConfirmationDialogComponent } from './dashboar/confirmation-dialog.comp
 import { ListcommandsComponent } from './listcommands/listcommands.component';
 import { ComandDetailsComponent } from './listcommands/comand-details/comand-details.component';
 // import {MatDialogModule} from '@angular/material/dialog';
+import { ChartsModule,ThemeService } from 'ng2-charts';
+
+
+
 export const routes = [
   {  
     path: 'admin', 
@@ -53,10 +57,13 @@ export const routes = [
     ReactiveFormsModule,
     FormsModule,
     NgxDropzoneModule,
+    ChartsModule
+
     
 
     
     
-  ]
+  ],
+  providers:[ThemeService]
 })
 export class AdminModule { }
