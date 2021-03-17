@@ -34,10 +34,12 @@
                 </div>
                 <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
                   <mat-form-field class="w-100">
-                      <input matInput placeholder="Phone" type="tel" formControlName="phone" required>
+                      <input matInput placeholder="Phone" type="text" formControlName="phone" required>
                       <mat-error *ngIf="billingForm.controls.phone.errors?.required">Phone is required</mat-error>
-                      <mat-error *ngIf="billingForm.controls.phone.hasError('minlength')">Phone isn't long enough, minimum of 8 numbers</mat-error>
-                  </mat-form-field>
+                      <mat-error *ngIf="billingForm.controls.phone.errors?.minlength || billingForm.controls.phone.errors?.maxlength ">Exactly 8 numbers</mat-error>
+                      <mat-error *ngIf="billingForm.controls.phone.errors?.pattern">must be with format phone</mat-error>
+                  
+                    </mat-form-field>
                 </div>
                 <div fxFlex="100" fxFlex.gt-sm="25" class="px-1">
                   <mat-form-field class="w-100">

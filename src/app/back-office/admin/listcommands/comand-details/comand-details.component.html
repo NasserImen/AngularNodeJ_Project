@@ -1,0 +1,59 @@
+<div class="p-2 mt-1">
+    <h3>Order Details</h3>
+</div>
+
+<div class="mat-table orders-table">
+<div class="mat-header-row">
+  <div class="mat-header-cell">Num order</div>
+  <div class="mat-header-cell">Date</div>
+  <div class="mat-header-cell">Total</div>
+  <div class="mat-header-cell">Status</div>
+  
+</div>
+<div class="mat-row">
+  <div class="mat-cell "><span class="order">{{data.command.NumOrder}}</span></div>
+  <div class="mat-cell ">{{data.command.date}}</div>
+  <div class="mat-cell ">{{data.command.Total}}</div>
+  <div class="mat-cell ">{{data.command.status}}</div>     
+ 
+
+</div>
+</div>
+
+<div class="mat-table orders-table">
+    <div class="mat-header-row">
+      <div class="mat-header-cell">Delivry Method</div>
+      <div class="mat-header-cell">Card Number</div>
+      <!-- <div class="mat-header-cell">Produit</div> -->
+      <!-- <div class="mat-header-cell">Status</div> -->
+      
+    </div>
+    <div class="mat-row">
+      <div class="mat-cell "><span class="order">{{data.command.DeliveryMethod}}</span></div>
+      <div class="mat-cell ">{{data.command.CardNumber}}</div>
+      <!-- <div class="mat-cell ">{{data.command.Product.titre}}</div> -->
+      <!-- <div class="mat-cell ">{{data.command.status}}</div>      -->
+    </div>
+</div>
+<div class="p-2 mt-1">
+    <h3>Products</h3>
+</div>
+<div class="mat-table orders-table">
+    <div class="mat-header-row">
+      <div class="mat-header-cell">Title</div>
+      <div class="mat-header-cell">Product Count</div>
+      <div class="mat-header-cell">Price</div>
+      <!-- <div class="mat-header-cell">Produit</div> -->
+      <!-- <div class="mat-header-cell">Status</div> -->
+      
+    </div>
+    <div *ngFor="let product of data.command.products ;index as i" class="mat-row">
+      <div class="mat-cell "><span class="order">{{product.product.titre}}</span></div>
+      <div class="mat-cell ">{{product.productCount}}</div>
+      <div class="mat-cell ">{{product.product.prix}}</div>
+      <!-- <div class="mat-cell ">{{data.command.Product.titre}}</div> -->
+      <!-- <div class="mat-cell ">{{data.command.status}}</div>      -->
+    </div>
+</div>
+
+

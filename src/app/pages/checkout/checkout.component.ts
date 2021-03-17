@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material';
+import { emailValidator } from 'src/app/theme/utils/app-validators';
 import { environment } from 'src/environments/environment';
 import { Data, AppService } from '../../app.service';
 
@@ -37,12 +38,12 @@ export class CheckoutComponent implements OnInit {
       lastName: new FormControl ('', Validators.required),
       middleName: new FormControl (''),
       company: new FormControl (''),
-      email: new FormControl('', Validators.required),
-      phone: new FormControl ('', Validators.required),
+      email: new FormControl('', Validators.compose([Validators.required, emailValidator  ])),
+      phone: new FormControl ('', [Validators.required,Validators.minLength(8),Validators.maxLength(8),Validators.pattern('[0-9]+')]),
       country: new FormControl ('', Validators.required),
       city:  new FormControl ('', Validators.required),
       state: new FormControl (''),
-      zip: new FormControl ('', Validators.required),
+      zip: new FormControl ('', [Validators.required,Validators.minLength(4),Validators.maxLength(4),Validators.pattern('[0-9]+')]),
       address: new FormControl ('', Validators.required)
     });
     this.deliveryForm = this.formBuilder.group({
@@ -50,10 +51,10 @@ export class CheckoutComponent implements OnInit {
     });
     this.paymentForm = this.formBuilder.group({
       cardHolderName: ['', Validators.required],
-      cardNumber: ['', Validators.required],
+      cardNumber: ['', [Validators.required,Validators.minLength(16),Validators.maxLength(16),Validators.pattern('[0-9]+')]],
       expiredMonth: ['', Validators.required],
       expiredYear: ['', Validators.required],
-      cvv: ['', Validators.required]
+      cvv: ['', [Validators.required,Validators.minLength(3),Validators.maxLength(3),Validators.pattern('[0-9]+')]]
     });
   }
 

@@ -33,14 +33,17 @@
               <mat-label>Email</mat-label>
               <input matInput placeholder="Email" formControlName="email" required>
               <mat-error *ngIf="billingForm.controls.email.errors?.required">Email is required</mat-error>
-          </mat-form-field>
+              <mat-error *ngIf="billingForm.controls.email.hasError('invalidEmail')">Invalid email address</mat-error>
+            </mat-form-field>
         </div>
         <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
           <mat-form-field appearance="outline" class="w-100">
               <mat-label>Phone</mat-label>
               <input matInput placeholder="Phone" formControlName="phone" required>
               <mat-error *ngIf="billingForm.controls.phone.errors?.required">Phone is required</mat-error>
-          </mat-form-field>
+              <mat-error *ngIf="billingForm.controls.phone.errors?.minlength || billingForm.controls.phone.errors?.maxlength ">Exactly 8 numbers</mat-error>
+              <mat-error *ngIf="billingForm.controls.phone.errors?.pattern">must be with format phone</mat-error>
+            </mat-form-field>
         </div>
         <div fxFlex="100" fxFlex.gt-sm="25" class="px-1">
           <mat-form-field appearance="outline" class="w-100">
@@ -71,7 +74,9 @@
               <mat-label>Zip/Postal Code</mat-label>
               <input matInput placeholder="Zip/Postal Code" formControlName="zip" required>
               <mat-error *ngIf="billingForm.controls.zip.errors?.required">Zip/Postal Code is required</mat-error>
-          </mat-form-field>
+              <mat-error *ngIf="billingForm.controls.zip.errors?.minlength || billingForm.controls.zip.errors?.maxlength">exactly 4 numbers</mat-error>
+              <mat-error *ngIf="billingForm.controls.zip.errors?.pattern">Zip/Postal Code contains only numbers</mat-error>
+            </mat-form-field>
         </div>
         <div fxFlex="100" class="px-1">
           <mat-form-field appearance="outline" class="w-100">
@@ -116,6 +121,8 @@
               <mat-label>Card number</mat-label>
               <input matInput placeholder="Card number" formControlName="cardNumber" required>
               <mat-error *ngIf="paymentForm.controls.cardNumber.errors?.required">Card number is required</mat-error>
+              <mat-error *ngIf="paymentForm.controls.cardNumber.errors?.minlength || paymentForm.controls.cardNumber.errors?.maxlength ">Card number is exactly 16 numbers</mat-error>
+              <mat-error *ngIf="paymentForm.controls.cardNumber.errors?.pattern">Card number contains only numbers</mat-error>
           </mat-form-field>
         </div>
         <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
@@ -145,6 +152,8 @@
               <mat-label>CVV</mat-label>
               <input matInput placeholder="CVV" formControlName="cvv" required>
               <mat-error *ngIf="paymentForm.controls.cvv.errors?.required">CVV is required</mat-error>
+              <mat-error *ngIf="paymentForm.controls.cvv.errors?.minlength || paymentForm.controls.cvv.errors?.maxlength ">CVV is exactly 3 numbers</mat-error>
+              <mat-error *ngIf="paymentForm.controls.cvv.errors?.pattern">CVV contains only numbers</mat-error>
           </mat-form-field>
         </div>
       </div>

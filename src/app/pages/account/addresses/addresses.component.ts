@@ -24,7 +24,7 @@ export class AddressesComponent implements OnInit {
       'middleName': '',
       'company': '',
       'email': ['', Validators.compose([Validators.required, emailValidator  ])],
-      'phone': [0, [Validators.required,Validators.minLength(8)],Validators.pattern[0-9]],
+      'phone': ['', [Validators.required,Validators.minLength(8),Validators.maxLength(8),Validators.pattern('[0-9]+')]],
       'country': ['', Validators.required],
       'city': ['', Validators.required],
       'state': '',
@@ -47,6 +47,8 @@ export class AddressesComponent implements OnInit {
   }
 
   public onBillingFormSubmit(values:Object):void {
+    console.log(this.billingForm);
+    
     if (this.billingForm.valid) {
       this.snackBar.open('Your billing address information updated successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
     }

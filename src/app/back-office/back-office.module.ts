@@ -32,5 +32,6 @@ export const routes = [
     
     
   ]
+
 })
 export class BackofficeModule { }
