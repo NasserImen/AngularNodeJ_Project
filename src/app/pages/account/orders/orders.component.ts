@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { command } from 'src/app/back-office/admin/Models/command';
+import { CommandService } from 'src/app/services/command.service';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 
 @Component({
   selector: 'app-orders',
@@ -6,18 +10,40 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./orders.component.scss']
 })
 export class OrdersComponent implements OnInit {
-
-  public orders = [
-    { number: '#3258', date: 'March 29, 2018', status: 'Completed', total: '$140.00 for 2 items', invoice: true },
-    { number: '#3145', date: 'February 14, 2018', status: 'On hold', total: '$255.99 for 1 item', invoice: false },
-    { number: '#2972', date: 'January 7, 2018', status: 'Processing', total: '$255.99 for 1 item', invoice: true },
-    { number: '#2971', date: 'January 5, 2018', status: 'Completed', total: '$73.00 for 1 item', invoice: true },
-    { number: '#1981', date: 'December 24, 2017', status: 'Pending Payment', total: '$285.00 for 2 items', invoice: false },
-    { number: '#1781', date: 'September 3, 2017', status: 'Refunded', total: '$49.00 for 2 items', invoice: false }
-  ]
-  constructor() { }
-
+  listCommands:command[]=[]
+found:command[];
+ 
+  constructor(public service: CommandService, private dialog: MatDialog) { }
+// init(){
+//   this.getCommands()
+// }
   ngOnInit() {
+    this.getCommands()
+
   }
+
+  getCommands(){
+    this.service.getAllCommands().subscribe(res=>{
+      this.listCommands=res
+      
+     },
+     err =>{console.log(err)},
+     ()=>{  this.found=this.listCommands.filter(order=>
+
+      order.userId==localStorage.getItem("userId")
+      
+      )
+      return this.found;})
+    }
+    
+    DetailCommand(command){
+      const dialogRef = this.dialog.open(OrderDetailsComponent,{
+        width: '950px',
+        height: '600px',
+        data:{
+          command
+        }
+      });
+    }
 
 }
