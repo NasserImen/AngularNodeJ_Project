@@ -13,54 +13,44 @@ import { ComandDetailsComponent } from './comand-details/comand-details.componen
 })
 export class ListcommandsComponent implements OnInit {
 listCommands:command[]=[]
-// NumOrder:string;
-// date:string;
-// Total:number;
-// userId:value;
-// DeliveryMethod:string;
-// CardNumber:string;
-// status:string;
-// products:value,
 
-  // public dialogRef:MatDialogRef<ComandDetailsComponent>
+
 constructor(public service: CommandService, private dialog: MatDialog,) { }
-  // count=interval(1500);
 
-  // subscription = this.count.subscribe(value => {
-  //   if (this.dialogRef && this.dialogRef.componentInstance) {
-  //     this.dialogRef.componentInstance.data = {
-  //       NumOrder:value,
-  //       date:value,
-  //       Total:value,
-  //       userId:value,
-  //       DeliveryMethod:value,
-  //       CardNumber:value,
-  //       status:value,
-  //       products:value,
-        // images:value,
-        // langue:value,
-        // id:value
-  //     };
-  //   }
-  // });
 
   ngOnInit() {
     this.getCommands();
+    
   }
 getCommands(){
 this.service.getAllCommands().subscribe(res=>{
   this.listCommands=res 
+  
  },
  err =>{console.log(err)},
  ()=>{console.log(this.listCommands) })
 }
 DetailCommand(command){
   const dialogRef = this.dialog.open(ComandDetailsComponent,{
-    width: '850px',
+    width: '950px',
     height: '600px',
     data:{
       command
     }
   });
+}
+OnHoldOrder(command){
+  var order={
+  status:command.status="On Hold"
+  }
+  this.service.UpdateCommand(command._id,order).subscribe(res=>{console.log(res);
+  })
+}
+AcceptOrder(command){
+  var order={
+    status:command.status="validée"
+    }
+    this.service.UpdateCommand(command._id,order).subscribe(res=>{console.log(res);
+    })
 }
 }

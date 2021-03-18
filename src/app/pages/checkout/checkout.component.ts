@@ -1,6 +1,8 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material';
+import { DEFAULT_TEMPLATE } from 'ngx-pagination/dist/template';
 import { emailValidator } from 'src/app/theme/utils/app-validators';
 import { environment } from 'src/environments/environment';
 import { Data, AppService } from '../../app.service';
@@ -22,8 +24,8 @@ export class CheckoutComponent implements OnInit {
   deliveryMethods = [];
   grandTotal = 0;
   baseUrl=environment.baseURL;
-
-  constructor(public appService:AppService, public formBuilder: FormBuilder) { }
+ Date:any;
+  constructor(public datepipe: DatePipe,public appService:AppService, public formBuilder: FormBuilder) { }
 
   ngOnInit() {    
     this.appService.Data.cartList.forEach(product=>{
@@ -64,22 +66,18 @@ export class CheckoutComponent implements OnInit {
     this.verticalStepper._steps.forEach(step => step.editable = false);
     this.appService.Data.cartList.forEach(product=>{
       this.appService.Data.totalCartCount+=product.cardCount
-      this.appService.Data.totalPrice = this.grandTotal;
-     
-       
-       
+      this.appService.Data.totalPrice = this.grandTotal; 
     }) 
-    // this.appService.Data.cartList.length = 0;    
  
-   
-    
+   this.Date=new Date()
+   var date=this.datepipe.transform(this.Date, 'yyyy-MM-dd');
     var commande ={
       products : this.appService.Data.cartList,
       total : this.appService.Data.totalPrice,
        DeliveryMethod:this.deliveryForm.controls.deliveryMethod.value.name,
        CardNumber:this.paymentForm.controls.cardNumber.value,
        userId : localStorage.getItem('userId'),
-       date:new Date()
+       date:date
        
     }
 

@@ -50,6 +50,8 @@ export class AddressesComponent implements OnInit {
     console.log(this.billingForm);
     
     if (this.billingForm.valid) {
+      this.authserv.updateUser(this.billingForm.value).subscribe(res=>{console.log(res)});
+
       this.snackBar.open('Your billing address information updated successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
     }
   }
@@ -60,8 +62,8 @@ export class AddressesComponent implements OnInit {
     }
   }
 
-  public SuitUser(){
-    this.authserv.updateUser(localStorage.getItem("userconnected")).subscribe(res=>{console.log(res);
-    })
-  }
+  // public SuitUser(){
+  //   this.authserv.updateUser(this.billingForm.value).subscribe(res=>{console.log(res);
+  //   })
+  // }
 }

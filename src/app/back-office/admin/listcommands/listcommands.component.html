@@ -10,17 +10,23 @@
       <div class="mat-header-cell">Status</div>
       <div class="mat-header-cell"></div>
     </div>
-    <div *ngFor="let command of listCommands;index as i" class="mat-row">
+    <div *ngFor="let command of listCommands" class="mat-row">
       <div class="mat-cell"><span class="order">{{command.NumOrder}}</span></div>
       <div class="mat-cell">{{command.date}}</div>
-      <div class="mat-cell">{{command.Total}}</div>
-      <div class="mat-cell">{{command.status}}</div>     
+      <div class="mat-cell total">${{command.Total}}</div>
+      <div class="mat-cell status" >	{{command.status}} <mat-icon *ngIf="command.status=='en cours'">add_shopping_cart</mat-icon> <mat-icon *ngIf="command.status=='validée'">done_outline</mat-icon> 	<mat-icon *ngIf="command.status=='On Hold'">assignment_late</mat-icon></div>     
       <div class="mat-cell"></div>
-        <div class="p-1 actions">          
-          <button mat-mini-fab color="warn" matTooltip="Details" (click)='DetailCommand(command)'>
-              <mat-icon>details</mat-icon>
+        <div class="p-1 actions">   
+          <button mat-mini-fab color="warn" matTooltip="View Details"(click)='DetailCommand(command)'>
+            <mat-icon>remove_red_eye</mat-icon>
+        </button>    
+        <button mat-mini-fab color="accent" matTooltip="On Hold" [disabled]="command.status=='On Hold'|| command.status=='validée'"(click)="OnHoldOrder(command)">
+          <mat-icon>feedback</mat-icon>
+      </button>    
+          <button mat-mini-fab color="primary" matTooltip="Accept order" [disabled]="command.status=='validée'" (click)="AcceptOrder(command)">
+            <mat-icon>assignment_turned_in</mat-icon>
           </button>
-        </div>
+        </div>	
 
   </div>
 </div>
