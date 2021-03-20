@@ -10,7 +10,7 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
   styleUrls: ['./orders.component.scss']
 })
 export class OrdersComponent implements OnInit {
-  listCommands:command[]=[]
+  listCommands:any;
 found:command[];
  
   constructor(public service: CommandService, private dialog: MatDialog) { }

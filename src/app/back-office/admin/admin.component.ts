@@ -17,8 +17,7 @@ export class AdminComponent implements OnInit {
     { name: 'Add Book', href: 'addbook', icon: 'info' },
 
     { name: 'Add category', href: 'addCategory', icon: 'info'},
-    { name: 'Order History', href: 'orders', icon: 'add_shopping_cart' },  
-    { name: 'List of commands', href: 'listCommands', icon: 'add_shopping_cart' },  
+     { name: 'List of orders', href: 'listCommands', icon: 'add_shopping_cart' },  
 
     // { name: 'Logout', href: '/sign-in', icon: 'power_settings_new' },
     
@@ -49,6 +48,8 @@ export class AdminComponent implements OnInit {
     localStorage.removeItem('userconnected')
     localStorage.removeItem('token')
     localStorage.removeItem('userName')
+    localStorage.removeItem('user')
+
     this.authService.isLoginSubject.next(false);
 
     this.router.navigate(['/sign-in'])

@@ -44,6 +44,7 @@ export class AccountComponent implements OnInit {
     localStorage.removeItem('userconnected')
     localStorage.removeItem('token')
     localStorage.removeItem('userName')
+    localStorage.removeItem('user')
     this.authService.isLoginSubject.next(false);
 
     this.router.navigate(['/sign-in'])
