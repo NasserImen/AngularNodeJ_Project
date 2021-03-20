@@ -9,6 +9,7 @@ import { emailValidator } from '../../../theme/utils/app-validators';
 import { ProductZoomComponent } from './product-zoom/product-zoom.component';
 import { Livre } from 'src/app/back-office/admin/Models/LivreModel';
 import { environment } from 'src/environments/environment';
+import { AddBooksService } from 'src/app/back-office/admin/add-books.service';
 
 @Component({
   selector: 'app-product',
@@ -28,15 +29,18 @@ export class ProductComponent implements OnInit {
   bookId: string
   productId: string
   stock:number
-  availibility="Availabl"
-  constructor(public appService:AppService, private activatedRoute: ActivatedRoute, public dialog: MatDialog, public formBuilder: FormBuilder ) {  }
+  availibility="Available"
+  constructor(public livreService:AddBooksService,public appService:AppService, private activatedRoute: ActivatedRoute, public dialog: MatDialog, public formBuilder: FormBuilder ) {  }
 result : any
 books =[]
 baseUrl=environment.baseURL;
-  ngOnInit() {      
+book:Livre;
+Book:Livre
+  ngOnInit() {    
    this.productId= this.activatedRoute.snapshot.paramMap.get("_id")
-      
-    this.getProductById(this.productId)
+
+   this.getProductById(this.productId)
+  // this.livreService.getLivre(this.productId).subscribe(res=>{this.book=res},err=>{},()=>{this.Book=this.book})
     
     this.form = this.formBuilder.group({ 
       'review': [null, Validators.required],            
@@ -71,17 +75,19 @@ baseUrl=environment.baseURL;
   public getProductById(id){  
     this.appService.getProductById(id).subscribe(data=>{
       this.product = data;
-      this.stock = data.stock
+      this.stock = this.product.found.stock
       if(this.stock!==null){
-      this.availibility="Unavailable"
+      this.availibility="Available"
+    }else{
+      this.availibility=" Unavailable"
     }
+
     },err=>{
       console.log(err);
       
-    }, ()=>{
-     console.log( this.product);
-     
+    }, ()=>{    
     });
+
   }
 
   public getRelatedProducts(){
@@ -124,9 +130,9 @@ baseUrl=environment.baseURL;
     });
   }
 
-  ngOnDestroy() {
-    this.sub.unsubscribe();
-  } 
+  // ngOnDestroy() {
+  //   this.sub.unsubscribe();
+  // } 
 
   public onSubmit(values:Object):void {
     if (this.form.valid) {

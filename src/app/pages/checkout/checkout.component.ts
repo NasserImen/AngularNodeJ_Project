@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material';
 import { DEFAULT_TEMPLATE } from 'ngx-pagination/dist/template';
+import { AuthService } from 'src/app/services/auth.service';
 import { emailValidator } from 'src/app/theme/utils/app-validators';
 import { environment } from 'src/environments/environment';
 import { Data, AppService } from '../../app.service';
@@ -25,12 +26,18 @@ export class CheckoutComponent implements OnInit {
   grandTotal = 0;
   baseUrl=environment.baseURL;
  Date:any;
-  constructor(public datepipe: DatePipe,public appService:AppService, public formBuilder: FormBuilder) { }
+ idUser=localStorage.getItem('userId');
+ UserConnected:any
+ 
+  constructor(public useservice:AuthService,public datepipe: DatePipe,public appService:AppService, public formBuilder: FormBuilder) { }
 
   ngOnInit() {    
+  
     this.appService.Data.cartList.forEach(product=>{
       this.grandTotal += product.cardCount*product.prix;
     });
+   
+   
     this.countries = this.appService.getCountries();
     this.months = this.appService.getMonths();
     this.years = this.appService.getYears();
@@ -40,7 +47,7 @@ export class CheckoutComponent implements OnInit {
       lastName: new FormControl ('', Validators.required),
       middleName: new FormControl (''),
       company: new FormControl (''),
-      email: new FormControl('', Validators.compose([Validators.required, emailValidator  ])),
+      email: new FormControl(localStorage.getItem('userconnected'), Validators.compose([Validators.required, emailValidator  ])),
       phone: new FormControl ('', [Validators.required,Validators.minLength(8),Validators.maxLength(8),Validators.pattern('[0-9]+')]),
       country: new FormControl ('', Validators.required),
       city:  new FormControl ('', Validators.required),
@@ -58,6 +65,7 @@ export class CheckoutComponent implements OnInit {
       expiredYear: ['', Validators.required],
       cvv: ['', [Validators.required,Validators.minLength(3),Validators.maxLength(3),Validators.pattern('[0-9]+')]]
     });
+    
   }
 
   public placeOrder(){

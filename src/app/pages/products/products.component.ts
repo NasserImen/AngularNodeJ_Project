@@ -47,23 +47,7 @@ export class ProductsComponent implements OnInit {
   //   { name: "#F5F5F5", selected: false },
   //   { name: "#696969", selected: false }
   // ];
-  // public sizes = [
-  //   { name: "S", selected: false },
-  //   { name: "M", selected: false },
-  //   { name: "L", selected: false },
-  //   { name: "XL", selected: false },
-  //   { name: "2XL", selected: false },
-  //   { name: "32", selected: false },
-  //   { name: "36", selected: false },
-  //   { name: "38", selected: false },
-  //   { name: "46", selected: false },
-  //   { name: "52", selected: false },
-  //   { name: "13.3\"", selected: false },
-  //   { name: "15.4\"", selected: false },
-  //   { name: "17\"", selected: false },
-  //   { name: "21\"", selected: false },
-  //   { name: "23.4\"", selected: false }
-  // ]; 
+  
   public page:any;
   public settings: Settings;
   baseUrl=environment.baseURL;
@@ -106,8 +90,7 @@ export class ProductsComponent implements OnInit {
       this.products = res; 
       //for show more product  
      
-    },err=>{},()=>{console.log(this.products);
-     });
+    },err=>{},()=>{});
   }
 
   // public getCategories(){  

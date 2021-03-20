@@ -52,13 +52,16 @@ export class SignInComponent implements OnInit {
        localStorage.setItem("token", res.token);
        localStorage.setItem("userconnected",res.user);
        localStorage.setItem("userId",res.userId)
-      
+       localStorage.setItem("user",JSON.stringify(res.user))
+
        this.us.isLoginSubject.next(true);
        if(this.user.email=="sofien@gmail.com" || this.user.email=="nasserimen@gmail.com" || this.user.email=="js.wafa@gmail.com"){
         localStorage.setItem("token", res.token);
-        localStorage.setItem("userconnected",this.loginForm.value.email);
+        localStorage.setItem("userconnected",res.user);
         localStorage.setItem("userId",res.userId)
         localStorage.setItem("userName",res.userName) 
+        localStorage.setItem("user",JSON.stringify(res.user))
+
         this.router.navigate(['/admin/dashboard'])
         
           // const userId=localStorage.getItem('userId')

@@ -39,7 +39,7 @@ export class AppService {
     }
 
     public getProductById(id): Observable<Livre>{
-        return this.http.get<Livre>(this.url +'/Livres/Livres/' + id);
+        return this.http.get<Livre>(this.url +"/Livres/Livres/"+id);
     }
 
     // public getBanners(): Observable<any[]>{
