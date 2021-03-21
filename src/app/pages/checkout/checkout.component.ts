@@ -28,11 +28,13 @@ export class CheckoutComponent implements OnInit {
  Date:any;
  idUser=localStorage.getItem('userId');
  UserConnected:any
- 
+ user:any;
   constructor(public useservice:AuthService,public datepipe: DatePipe,public appService:AppService, public formBuilder: FormBuilder) { }
 
   ngOnInit() {    
-  
+    this.user= JSON.parse (localStorage.getItem('user'))
+console.log(this.user.country);
+
     this.appService.Data.cartList.forEach(product=>{
       this.grandTotal += product.cardCount*product.prix;
     });
@@ -43,17 +45,17 @@ export class CheckoutComponent implements OnInit {
     this.years = this.appService.getYears();
     this.deliveryMethods = this.appService.getDeliveryMethods();
     this.billingForm = new FormGroup({
-      firstName:new FormControl ('', Validators.required),
-      lastName: new FormControl ('', Validators.required),
-      middleName: new FormControl (''),
-      company: new FormControl (''),
+      firstName:new FormControl (this.user.firstName, Validators.required),
+      lastName: new FormControl (this.user.lastName, Validators.required),
+      middleName: new FormControl (this.user.middleName),
+      company: new FormControl (this.user.compagny),
       email: new FormControl(localStorage.getItem('userconnected'), Validators.compose([Validators.required, emailValidator  ])),
-      phone: new FormControl ('', [Validators.required,Validators.minLength(8),Validators.maxLength(8),Validators.pattern('[0-9]+')]),
-      country: new FormControl ('', Validators.required),
-      city:  new FormControl ('', Validators.required),
-      state: new FormControl (''),
-      zip: new FormControl ('', [Validators.required,Validators.minLength(4),Validators.maxLength(4),Validators.pattern('[0-9]+')]),
-      address: new FormControl ('', Validators.required)
+      phone: new FormControl (this.user.phone, [Validators.required,Validators.minLength(8),Validators.maxLength(8),Validators.pattern('[0-9]+')]),
+      country: new FormControl (this.user.country, Validators.required),
+      city:  new FormControl (this.user.city, Validators.required),
+      state: new FormControl (this.user.state),
+      zip: new FormControl (this.user.zip, [Validators.required,Validators.minLength(4),Validators.maxLength(4),Validators.pattern('[0-9]+')]),
+      address: new FormControl (this.user.address, Validators.required)
     });
     this.deliveryForm = this.formBuilder.group({
       deliveryMethod: [this.deliveryMethods[0], Validators.required]

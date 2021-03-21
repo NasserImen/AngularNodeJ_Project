@@ -99,7 +99,10 @@
                                         <button mat-mini-fab color="warn" (click)="clear();stopClickPropagate($event)" matTooltip="Clear All" matTooltipPosition="after">
                                             <mat-icon>remove_shopping_cart</mat-icon>
                                         </button>
-                                        <a [routerLink]="['/checkout']" mat-mini-fab color="primary" matTooltip="Checkout" matTooltipPosition="before">
+                                        <a *ngIf='userconnected==true'[routerLink]="['/checkout']" mat-mini-fab color="primary" matTooltip="Checkout" matTooltipPosition="before">
+                                            <mat-icon>check</mat-icon>
+                                        </a>
+                                        <a *ngIf='userconnected==false'[routerLink]="['/sign-in']" mat-mini-fab color="primary" matTooltip="Checkout" matTooltipPosition="before">
                                             <mat-icon>check</mat-icon>
                                         </a>
                                     </div>

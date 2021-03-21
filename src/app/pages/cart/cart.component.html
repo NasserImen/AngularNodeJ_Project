@@ -55,7 +55,9 @@
           <span class="new-price">${{ grandTotal | number : '1.2-2'}}</span>
         </div>
       </div>
-      <div class="mat-cell text-center"><a [routerLink]="['/checkout']" mat-raised-button color="primary">Proceed To Checkout</a></div>
+     <div class="mat-cell text-center"><a *ngIf='userconnected==true' [routerLink]="['/checkout']" mat-raised-button color="primary">Proceed To Checkout</a></div>
+     <div class="mat-cell text-center"><a *ngIf='userconnected==false'[routerLink]="['/sign-in']" mat-raised-button color="primary">Proceed To Checkout</a></div>
+
     </div>
   </div>
 
