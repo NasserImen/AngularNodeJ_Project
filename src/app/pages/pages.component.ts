@@ -1,10 +1,11 @@
-import { Component, OnInit, HostListener, ViewChild, Input } from '@angular/core'; 
+import { Component, OnInit, HostListener, ViewChild, Input, ChangeDetectorRef } from '@angular/core'; 
 import { Router, NavigationEnd } from '@angular/router';
 import { Settings, AppSettings } from '../app.settings';
 import { AppService } from '../app.service';
 import { Category, Product } from '../app.models';
 import { SidenavMenuService } from '../theme/components/sidenav-menu/sidenav-menu.service';
 import { environment } from 'src/environments/environment';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-pages',
@@ -17,7 +18,7 @@ export class PagesComponent implements OnInit {
   public categories:Category[];
   public category:Category;
   public sidenavMenuItems:Array<any>;
-
+  public userconnected;
 
   @ViewChild('sidenav', { static: true }) sidenav:any;
 
@@ -25,15 +26,22 @@ export class PagesComponent implements OnInit {
   constructor(public appSettings:AppSettings, 
               public appService:AppService, 
               public sidenavMenuService:SidenavMenuService,
-              public router:Router) { 
+              public router:Router, private authService: AuthService) { 
     this.settings = this.appSettings.settings; 
   }
   baseUrl=environment.baseURL;
-
+  init(){
+    this.authService.isLoginSubject.subscribe( result => {
+          
+            this.userconnected = result 
+            
+        })
+      }
   ngOnInit() {
-    // this.getCategories();
+    this.init()
+    console.log(this.userconnected);
+    
     this.sidenavMenuItems = this.sidenavMenuService.getSidenavMenuItems();
-
   } 
 
   // public getCategories(){    

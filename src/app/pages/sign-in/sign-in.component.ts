@@ -20,7 +20,7 @@ export class SignInComponent implements OnInit {
   signin:boolean;
   isLoginSubject
   isLoggedIn : Observable<boolean>
-  constructor(public formBuilder: FormBuilder,private authService: AuthService, public router:Router, public snackBar: MatSnackBar, private us:AuthService) { 
+  constructor(public formBuilder: FormBuilder, public router:Router, public snackBar: MatSnackBar, private us:AuthService) { 
  
   }
 
@@ -41,7 +41,6 @@ export class SignInComponent implements OnInit {
 
   public onLoginFormSubmit(user):void {
    this.us.login(user).subscribe(res=>{
-     console.log(res);
      
       this.user = res.user;
       if (!this.user) {
@@ -53,26 +52,25 @@ export class SignInComponent implements OnInit {
        localStorage.setItem("userconnected",res.user);
        localStorage.setItem("userId",res.userId)
        localStorage.setItem("user",JSON.stringify(res.user))
-
-       this.us.isLoginSubject.next(true);
+       this.us.isLoginSubject.next(true)  
+       
        if(this.user.email=="sofien@gmail.com" || this.user.email=="nasserimen@gmail.com" || this.user.email=="js.wafa@gmail.com"){
         localStorage.setItem("token", res.token);
         localStorage.setItem("userconnected",res.user);
         localStorage.setItem("userId",res.userId)
         localStorage.setItem("userName",res.userName) 
         localStorage.setItem("user",JSON.stringify(res.user))
+        this.us.isLoginSubject.next(true);
 
         this.router.navigate(['/admin/dashboard'])
-        
-          // const userId=localStorage.getItem('userId')
-          // this.authService.getUser(userId).subscribe(res=>{console.log(res);
-          // })
       
        }else{
         localStorage.setItem("token", res.token);
         localStorage.setItem("userconnected",this.loginForm.value.email);
         localStorage.setItem("userId",res.userId)
         localStorage.setItem("userName",res.userName)
+        this.us.isLoginSubject.next(true)  
+
        this.router.navigate(['/']);
       }
      }

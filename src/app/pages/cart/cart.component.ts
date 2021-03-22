@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { count } from 'console';
+import { AuthService } from 'src/app/services/auth.service';
 import { environment } from 'src/environments/environment';
 import { Data, AppService } from '../../app.service';
 
@@ -16,9 +17,18 @@ export class CartComponent implements OnInit {
   clickRemove:boolean=false;
   count=0;
   baseUrl=environment.baseURL;
-  constructor(public appService:AppService) { }
+  userconnected
+  constructor(public appService:AppService,private authService: AuthService) { }
+  init(){
+    this.authService.isLoginSubject.subscribe( result => {
+          
+            this.userconnected = result 
+            
+        })
+      }
 
   ngOnInit() {
+    this.init()
     this.appService.Data.cartList.forEach(product=>{
       this.total[product.titre] = product.cardCount*product.prix;
       this.grandTotal += product.cardCount*product.prix;
