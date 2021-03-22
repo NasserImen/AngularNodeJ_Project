@@ -16,7 +16,12 @@ export class AuthService {
     const token = localStorage.getItem('token');
     // Check whether the token is expired and return
     // true or false
-    return token ==null;
+      if(token){
+      return true
+    }else {
+      return false
+    }
+
   }
   
    postusers(user):Observable<any>{

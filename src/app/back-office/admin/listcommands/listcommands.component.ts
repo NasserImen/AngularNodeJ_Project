@@ -60,6 +60,7 @@ constructor(public service: CommandService, private dialog: MatDialog,) { }
 
 
   ngOnInit() {
+
     this.getCommands();
     
   }
@@ -69,7 +70,10 @@ this.service.getAllCommands().subscribe(res=>{
   
  },
  err =>{console.log(err)},
- ()=>{this.listCommands.forEach(command=>{
+ ()=>{
+  console.log(this.listCommands);
+   
+  this.listCommands.forEach(command=>{
         this.data.push(command.Total)
         this.labels.push(command.NumOrder)
  }); 

@@ -11,12 +11,14 @@ import { User } from '../models/user';
 export class CommandService {
   hhtpHeaders;
   options;
-  token;
-constructor(private http:HttpClient) { this.token=localStorage.getItem('token')
-this.hhtpHeaders=new HttpHeaders({
-  'Authorization':'Bearer'+this.token
-})
-this.options={Headers:this.hhtpHeaders}
+
+constructor(private http:HttpClient) {
+  //token;
+  this.hhtpHeaders=new HttpHeaders({
+    'authorization':'Bearer'+'z'
+  })
+  this.options={Headers:this.hhtpHeaders}
+
 }
 commandUrl= environment.baseURL
 

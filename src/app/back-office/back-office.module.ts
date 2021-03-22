@@ -6,14 +6,15 @@ import { AdminComponent } from './admin/admin.component';
 import { BackOfficeComponent } from './back-office.component';
 import { from } from 'rxjs';
 import { AddbookComponent } from './admin/addbook/addbook.component';
+import { AuthGuard } from '../guards/auth.guard';
 
 export const routes = [
   { path: 'addbook', component: AddbookComponent },
   
   {  
     path: 'backoffice', 
-     component: BackOfficeComponent, children: [
-         { path: 'addbook', component: AddbookComponent },
+     component: BackOfficeComponent, children: [ 
+         { path: 'addbook', component: AddbookComponent, canActivate:[AuthGuard] },
        
     ]
  }

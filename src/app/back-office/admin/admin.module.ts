@@ -18,6 +18,7 @@ import { ListcommandsComponent } from './listcommands/listcommands.component';
 import { ComandDetailsComponent } from './listcommands/comand-details/comand-details.component';
 // import {MatDialogModule} from '@angular/material/dialog';
 import { ChartsModule,ThemeService } from 'ng2-charts';
+import { AuthGuard } from 'src/app/guards/auth.guard';
 
 
 
@@ -26,10 +27,10 @@ export const routes = [
     path: 'admin', 
     
      component: AdminComponent, children: [
-         { path: 'dashboard', component: DashboarComponent },
-         { path: 'addbook', component: AddbookComponent },
-         { path:'addCategory', component:AddCategoryComponent},
-         { path: 'listCommands',component:ListcommandsComponent }
+         { path: 'dashboard', component: DashboarComponent, canActivate:[AuthGuard] },
+         { path: 'addbook', component: AddbookComponent , canActivate:[AuthGuard]},
+         { path:'addCategory', component:AddCategoryComponent, canActivate:[AuthGuard]},
+         { path: 'listCommands',component:ListcommandsComponent, canActivate:[AuthGuard] }
        
     ]
  }
